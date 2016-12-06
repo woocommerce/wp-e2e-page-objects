@@ -11,6 +11,7 @@ import Component from '../component';
 
 const PLUGINS_LIST_SELECTOR = '#the-list';
 const MESSAGE_DISMISS_SELECTOR = '#message button';
+const PLUGIN_DELETED_SELECTOR = '.plugin-deleted-tr';
 
 export default class ComponentPluginsList extends Component {
 	constructor( driver, selector = PLUGINS_LIST_SELECTOR ) {
@@ -47,7 +48,9 @@ export default class ComponentPluginsList extends Component {
 							helper.clickWhenClickable( self.driver, actionSelector );
 
 							// Delete plugin triggers popup.
-							return self.driver.switchTo().alert().accept();
+							self.driver.switchTo().alert().accept();
+
+							return helper.isEventuallyPresentAndDisplayed( self.driver, By.css( PLUGIN_DELETED_SELECTOR ) );
 					}
 				}
 			} );

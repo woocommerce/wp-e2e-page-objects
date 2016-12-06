@@ -69,7 +69,10 @@ test.describe( 'Add Plugins Page', function() {
 		const pageArgs = { url: manager.getPageUrl( '/wp-admin/plugins.php' ) };
 		const pagePlugins = new WPAdminPlugins( driver, pageArgs );
 		pagePlugins.deactivate( 'woocommerce' );
-		pagePlugins.delete( 'woocommerce' );
+
+		driver.wait( () => {
+			return pagePlugins.delete( 'woocommerce' );
+		}, 10000, 'Time out waiting plugin deletion' );
 
 		manager.quitBrowser();
 	} );
