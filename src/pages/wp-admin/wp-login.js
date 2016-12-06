@@ -1,9 +1,4 @@
 /**
- * External dependencies
- */
-import { WebDriverHelper as helper } from 'wp-e2e-webdriver';
-
-/**
  * Internal Dependencies
  */
 import Page from '../page';
