@@ -10,8 +10,7 @@ import { WebDriverManager, WebDriverHelper as helper } from 'wp-e2e-webdriver';
 /**
  * Internal dependencies
  */
-import WPLogin from '../../src/pages/wp-admin/wp-login';
-import WPAdminPlugins from '../../src/pages/wp-admin/wp-admin-plugins';
+import { WPLogin, WPAdminPlugins } from '../../src/index';
 
 chai.use( chaiAsPromised );
 const assert = chai.assert;

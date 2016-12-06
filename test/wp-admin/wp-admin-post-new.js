@@ -10,8 +10,7 @@ import { WebDriverManager, WebDriverHelper as helper } from 'wp-e2e-webdriver';
 /**
  * Internal dependencies
  */
-import WPLogin from '../../src/pages/wp-admin/wp-login';
-import WPAdminPostNew from '../../src/pages/wp-admin/wp-admin-post-new';
+import { WPLogin, WPAdminPostNew } from '../../src/index';
 
 chai.use( chaiAsPromised );
 const assert = chai.assert;
@@ -47,6 +46,9 @@ test.describe( 'New Post', function() {
 	test.it( 'can create a new post', () => {
 		page.setTitle( 'Test Post' );
 		page.addCategory( 'Test Category' );
+
+		// Scroll up.
+		driver.executeScript( 'scroll( 0, -250 )' );
 
 		assert.eventually.equal( page.publish(), true );
 	} );
