@@ -27,7 +27,7 @@
     "webdriver"
   ],
   "author": "WooCommerce",
-  "license": "GPL2",
+  "license": "GPL-2.0",
   "bugs": {
     "url": "https://github.com/woocommerce/wp-e2e-page-objects"
   },
