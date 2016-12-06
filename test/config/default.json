@@ -1,0 +1,11 @@
+{
+	"url": "http://example.com",
+	"users": {
+		"admin": {
+			"username": "",
+			"password": ""
+		}
+	},
+	"startBrowserTimeoutMs": 30000,
+	"mochaTimeoutMs": 120000
+}
