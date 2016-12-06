@@ -1,6 +1,7 @@
 /**
  * External dependencies
  */
+import config from 'config';
 import chai from 'chai';
 import chaiAsPromised from 'chai-as-promised';
 import test from 'selenium-webdriver/testing';
@@ -9,7 +10,7 @@ import { WebDriverManager } from 'wp-e2e-webdriver';
 /**
  * Internal dependencies
  */
-import FrontPage from '../src/pages/front-page';
+import { FrontPage } from '../src/index';
 
 const startBrowserTimeout = 30000;
 
@@ -17,25 +18,19 @@ chai.use( chaiAsPromised );
 
 const assert = chai.assert;
 
-const baseUrl = 'http://wp-e2e.dev';
-
 let manager;
 let driver;
 let page;
 let sidebar;
 
-function buildUrl( path ) {
-	return baseUrl + path;
-}
-
 test.describe( 'FrontPage has sidebar with widgets', () => {
 	test.before( 'Setup browser', function() {
 		this.timeout( startBrowserTimeout );
 
-		manager = new WebDriverManager( 'chrome' );
+		manager = new WebDriverManager( 'chrome', { baseUrl: config.get( 'url' ) } );
 		driver = manager.getDriver();
 
-		page = new FrontPage( driver, { url: buildUrl( '/' ) } );
+		page = new FrontPage( driver, { url: manager.getPageUrl( '/' ) } );
 		sidebar = page.getComponentByName( 'sidebar' );
 	} );
 
