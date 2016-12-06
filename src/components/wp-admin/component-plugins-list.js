@@ -54,7 +54,7 @@ export default class ComponentPluginsList extends Component {
 	}
 
 	getPluginActionCssSelector( pluginSlug, action = 'activate' ) {
-		const state = ( action === 'activate' ) ? 'inactive' : 'active';
+		const state = ( action === 'deactivate' ) ? 'active' : 'inactive';
 		return `tr.${ state }[data-slug="${ pluginSlug }"] .${ action }`;
 	}
 }
