@@ -20,7 +20,7 @@ export default class Page {
 		this.waitMs = args.waitMs;
 
 		if ( args.visit ) {
-			this.driver.get( this.url );
+			this.visit();
 		}
 
 		const pageComponents = {};
@@ -33,6 +33,10 @@ export default class Page {
 
 	getCurrentUrl() {
 		this.driver.getCurrentUrl();
+	}
+
+	visit() {
+		this.driver.get( this.url );
 	}
 
 	getComponents() {
