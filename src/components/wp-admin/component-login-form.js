@@ -9,20 +9,20 @@ import { WebDriverHelper as helper } from 'wp-e2e-webdriver';
  */
 import Component from '../component';
 
-const LOGIN_FORM_SELECTOR = '#loginform';
-const USERNAME_FIELD_SELECTOR = '#user_login';
-const PASSWORD_FIELD_SELECTOR = '#user_pass';
-const LOGIN_BUTTON_SELECTOR = '#wp-submit';
+const LOGIN_FORM_SELECTOR = By.css( '#loginform' );
+const USERNAME_FIELD_SELECTOR = By.css( '#user_login' );
+const PASSWORD_FIELD_SELECTOR = By.css( '#user_pass' );
+const LOGIN_BUTTON_SELECTOR = By.css( '#wp-submit' );
 
 export default class ComponentLoginForm extends Component {
 	constructor( driver, selector = LOGIN_FORM_SELECTOR ) {
-		super( driver, By.css( selector ) );
+		super( driver, selector );
 	}
 
 	fillUsername( username ) {
 		helper.setWhenSettable(
 			this.driver,
-			By.css( USERNAME_FIELD_SELECTOR ),
+			USERNAME_FIELD_SELECTOR,
 			username
 		);
 	}
@@ -30,7 +30,7 @@ export default class ComponentLoginForm extends Component {
 	fillPassword( password ) {
 		helper.setWhenSettable(
 			this.driver,
-			By.css( PASSWORD_FIELD_SELECTOR ),
+			PASSWORD_FIELD_SELECTOR,
 			password
 		);
 	}
@@ -38,7 +38,7 @@ export default class ComponentLoginForm extends Component {
 	submit() {
 		helper.clickWhenClickable(
 			this.driver,
-			By.css( LOGIN_BUTTON_SELECTOR )
+			LOGIN_BUTTON_SELECTOR
 		);
 	}
 }

@@ -8,10 +8,10 @@ import { By } from 'selenium-webdriver';
  */
 import ComponentWidget from './component-widget';
 
-const WIDGET_SELECTOR = '.widget_recent_entries';
+const WIDGET_SELECTOR = By.css( '.widget_recent_entries' );
 
 export default class ComponentWidgetRecentPosts extends ComponentWidget {
 	constructor( driver ) {
-		super( driver, By.css( WIDGET_SELECTOR ) );
+		super( driver, WIDGET_SELECTOR );
 	}
 }

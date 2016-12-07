@@ -9,8 +9,8 @@ import { WebDriverHelper as helper } from 'wp-e2e-webdriver';
  */
 import Component from '../component';
 
-const INSTALL_SELECTOR = '.install-now';
-const ACTIVATE_SELECTOR = '.activate-now';
+const INSTALL_SELECTOR = By.css( '.install-now' );
+const ACTIVATE_SELECTOR = By.css( '.activate-now' );
 
 export default class ComponentPluginCard extends Component {
 	constructor( driver, pluginSlug ) {
@@ -19,17 +19,19 @@ export default class ComponentPluginCard extends Component {
 		super( driver, By.css( cardCSS ) );
 
 		this.cardCSS = cardCSS;
+		this.installSelector = By.css( this.cardCSS + ' ' + INSTALL_SELECTOR.value );
+		this.activateSelector = By.css( this.cardCSS + ' ' + ACTIVATE_SELECTOR.value );
 	}
 
 	install() {
 		helper.clickWhenClickable(
 			this.driver,
-			By.css( this.cardCSS + ' ' + INSTALL_SELECTOR )
+			this.installSelector
 		);
 
 		return helper.waitTillPresentAndDisplayed(
 			this.driver,
-			By.css( this.cardCSS + ' ' + ACTIVATE_SELECTOR ),
+			this.activateSelector,
 			120000
 		);
 	}
@@ -37,7 +39,7 @@ export default class ComponentPluginCard extends Component {
 	activate() {
 		return helper.clickWhenClickable(
 			this.driver,
-			By.css( this.cardCSS + ' ' + ACTIVATE_SELECTOR )
+			this.activateSelector
 		);
 	}
 }

@@ -12,8 +12,8 @@ import ComponentMetaBoxCategories from '../../components/wp-admin/component-meta
 import ComponentMetaBoxFormat from '../../components/wp-admin/component-meta-box-publish';
 import ComponentMetaBoxPublish from '../../components/wp-admin/component-meta-box-publish';
 
-const TITLE_SELECTOR = '#title';
-const MESSAGE_DISMISS_SELECTOR = '#message button';
+const TITLE_SELECTOR = By.css( '#title' );
+const MESSAGE_DISMISS_SELECTOR = By.css( '#message button' );
 
 const components = {
 	metaBoxCategories: ComponentMetaBoxCategories,
@@ -38,12 +38,12 @@ export default class WPAdminPostEdit extends Page {
 
 		return helper.clickWhenClickable(
 			this.driver,
-			By.css( MESSAGE_DISMISS_SELECTOR )
+			MESSAGE_DISMISS_SELECTOR
 		);
 	}
 
 	setTitle( title ) {
-		return helper.setWhenSettable( this.driver, By.css( TITLE_SELECTOR ), title );
+		return helper.setWhenSettable( this.driver, TITLE_SELECTOR, title );
 	}
 
 	addCategory( category ) {

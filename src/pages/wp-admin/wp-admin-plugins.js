@@ -11,7 +11,7 @@ import Page from '../page';
 import WPAdminPluginInstall from './wp-admin-plugin-install';
 import ComponentPluginsList from '../../components/wp-admin/component-plugins-list';
 
-const ADD_NEW_SELECTOR = 'h1 .page-title-action';
+const ADD_NEW_SELECTOR = By.css( 'h1 .page-title-action' );
 
 const components = {
 	pluginsList: ComponentPluginsList
@@ -30,7 +30,7 @@ export default class WPAdminPlugins extends Page {
 	}
 
 	add() {
-		helper.clickWhenClickable( this.driver, By.css( ADD_NEW_SELECTOR ) );
+		helper.clickWhenClickable( this.driver, ADD_NEW_SELECTOR );
 		return new WPAdminPluginInstall( this.driver, { visit: false } );
 	}
 

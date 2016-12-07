@@ -9,13 +9,13 @@ import { WebDriverHelper as helper } from 'wp-e2e-webdriver';
  */
 import Component from '../component';
 
-const PLUGINS_LIST_SELECTOR = '#the-list';
-const MESSAGE_DISMISS_SELECTOR = '#message button';
-const PLUGIN_DELETED_SELECTOR = '.plugin-deleted-tr';
+const PLUGINS_LIST_SELECTOR = By.css( '#the-list' );
+const MESSAGE_DISMISS_SELECTOR = By.css( '#message button' );
+const PLUGIN_DELETED_SELECTOR = By.css( '.plugin-deleted-tr' );
 
 export default class ComponentPluginsList extends Component {
 	constructor( driver, selector = PLUGINS_LIST_SELECTOR ) {
-		super( driver, By.css( selector ) );
+		super( driver, selector );
 	}
 
 	activate( pluginSlug ) {
@@ -33,7 +33,6 @@ export default class ComponentPluginsList extends Component {
 	perform( pluginSlug, action = 'activate' ) {
 		const cssSelector = this.getPluginActionCssSelector( pluginSlug, action );
 		const actionSelector = By.css( cssSelector );
-		const dismissSelector = By.css( MESSAGE_DISMISS_SELECTOR );
 		const self = this;
 
 		return this.driver.isElementPresent( actionSelector ).
@@ -43,14 +42,14 @@ export default class ComponentPluginsList extends Component {
 						case 'activate':
 						case 'deactivate':
 							helper.clickWhenClickable( self.driver, actionSelector );
-							return helper.clickWhenClickable( self.driver, dismissSelector );
+							return helper.clickWhenClickable( self.driver, MESSAGE_DISMISS_SELECTOR );
 						case 'delete':
 							helper.clickWhenClickable( self.driver, actionSelector );
 
 							// Delete plugin triggers popup.
 							self.driver.switchTo().alert().accept();
 
-							return helper.isEventuallyPresentAndDisplayed( self.driver, By.css( PLUGIN_DELETED_SELECTOR ) );
+							return helper.isEventuallyPresentAndDisplayed( self.driver, PLUGIN_DELETED_SELECTOR );
 					}
 				}
 			} );

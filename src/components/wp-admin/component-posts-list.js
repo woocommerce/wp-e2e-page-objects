@@ -9,16 +9,16 @@ import { WebDriverHelper as helper } from 'wp-e2e-webdriver';
  */
 import Component from '../component';
 
-const POSTS_LIST_SELECTOR = '#posts-filter';
-const SEARCH_INPUT_SELECTOR = '#post-search-input';
-const SEARCH_SUBMIT_SELECTOR = '#search-submit';
+const POSTS_LIST_SELECTOR = By.css( '#posts-filter' );
+const SEARCH_INPUT_SELECTOR = By.css( '#post-search-input' );
+const SEARCH_SUBMIT_SELECTOR = By.css( '#search-submit' );
 
 export default class ComponentPostsList extends Component {
 	constructor( driver, selector = POSTS_LIST_SELECTOR ) {
 		super( driver, By.css( selector ) );
 
-		this.searchInput = driver.findElement( By.css( SEARCH_INPUT_SELECTOR ) );
-		this.searchSubmit = driver.findElement( By.css( SEARCH_SUBMIT_SELECTOR ) );
+		this.searchInput = driver.findElement( SEARCH_INPUT_SELECTOR );
+		this.searchSubmit = driver.findElement( SEARCH_SUBMIT_SELECTOR );
 	}
 
 	searchPosts( keyword ) {

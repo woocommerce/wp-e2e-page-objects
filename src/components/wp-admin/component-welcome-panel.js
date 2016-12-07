@@ -8,10 +8,10 @@ import { By } from 'selenium-webdriver';
  */
 import Component from '../component';
 
-const WELCOME_PANEL_SELECTOR = '#welcome-panel';
+const WELCOME_PANEL_SELECTOR = By.css( '#welcome-panel' );
 
 export default class ComponentWelcomePanel extends Component {
 	constructor( driver, selector = WELCOME_PANEL_SELECTOR ) {
-		super( driver, By.css( selector ) );
+		super( driver, selector );
 	}
 }

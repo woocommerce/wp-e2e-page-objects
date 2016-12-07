@@ -11,7 +11,7 @@ import Component from './component';
 import ComponentWidgetRecentPosts from './component-widget-recent-posts';
 import ComponentWidgetRecentComments from './component-widget-recent-comments';
 
-const SIDEBAR_SELECTOR = '.widget-area';
+const SIDEBAR_SELECTOR = By.css( '.widget-area' );
 
 const SIDEBAR_WIDGETS = {
 	recentPosts: ComponentWidgetRecentPosts,
@@ -20,7 +20,7 @@ const SIDEBAR_WIDGETS = {
 
 export default class ComponentSidebar extends Component {
 	constructor( driver, selector = SIDEBAR_SELECTOR, widgets = SIDEBAR_WIDGETS ) {
-		super( driver, By.css( selector ) );
+		super( driver, selector );
 
 		const sidebarWidgets = {};
 		forEach( widgets, ( ClassName, name ) => {

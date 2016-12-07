@@ -9,8 +9,8 @@ import { WebDriverHelper as helper } from 'wp-e2e-webdriver';
  */
 import Component from '../component';
 
-const TITLE_SELECTOR = 'h2.hndle';
-const TOGGLE_SELECTOR = 'button.handlediv';
+const TITLE_SELECTOR = By.css( 'h2.hndle' );
+const TOGGLE_SELECTOR = By.css( 'button.handlediv' );
 
 export default class ComponentMetaBox extends Component {
 	constructor( driver, selector ) {
@@ -18,12 +18,12 @@ export default class ComponentMetaBox extends Component {
 	}
 
 	getTitle() {
-		const selector = By.css( this.selector.value + ' ' + TITLE_SELECTOR );
+		const selector = By.css( this.selector.value + ' ' + TITLE_SELECTOR.value );
 		return this.driver.findElement( selector ).getText();
 	}
 
 	toggle() {
-		const selector = By.css( this.selector.value + ' ' + TOGGLE_SELECTOR );
+		const selector = By.css( this.selector.value + ' ' + TOGGLE_SELECTOR.value );
 		return helper.clickWhenClickable( selector );
 	}
 }

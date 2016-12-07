@@ -10,26 +10,26 @@ import { WebDriverHelper as helper } from 'wp-e2e-webdriver';
 import Component from '../component';
 import ComponentPluginCard from './component-plugin-card';
 
-const FILTER_SELECTOR = '.wp-filter';
-const TAB_FEATURED_SELECTOR = '.plugin-install-featured';
-const TAB_POPULAR_SELECTOR = '.plugin-install-popular';
-const TAB_RECOMMENDED_SELECTOR = '.plugin-install-recommended';
-const TAB_FAVORITES_SELECTOR = '.plugin-install-favorites';
-const SEARCH_PLUGINS_SELECTOR = '.wp-filter-search';
+const FILTER_SELECTOR = By.css( '.wp-filter' );
+const TAB_FEATURED_SELECTOR = By.css( '.plugin-install-featured' );
+const TAB_POPULAR_SELECTOR = By.css( '.plugin-install-popular' );
+const TAB_RECOMMENDED_SELECTOR = By.css( '.plugin-install-recommended' );
+const TAB_FAVORITES_SELECTOR = By.css( '.plugin-install-favorites' );
+const SEARCH_PLUGINS_SELECTOR = By.css( '.wp-filter-search' );
 
 export default class ComponentPluginInstallFilter extends Component {
 	constructor( driver, selector = FILTER_SELECTOR ) {
-		super( driver, By.css( selector ) );
+		super( driver, selector );
 
 		this.tabs = {};
-		this.tabs.featured = driver.findElement( By.css( TAB_FEATURED_SELECTOR ) );
-		this.tabs.popular = driver.findElement( By.css( TAB_POPULAR_SELECTOR ) );
-		this.tabs.recommended = driver.findElement( By.css( TAB_RECOMMENDED_SELECTOR ) );
-		this.tabs.favorites = driver.findElement( By.css( TAB_FAVORITES_SELECTOR ) );
+		this.tabs.featured = driver.findElement( TAB_FEATURED_SELECTOR );
+		this.tabs.popular = driver.findElement( TAB_POPULAR_SELECTOR );
+		this.tabs.recommended = driver.findElement( TAB_RECOMMENDED_SELECTOR );
+		this.tabs.favorites = driver.findElement( TAB_FAVORITES_SELECTOR );
 	}
 
 	search( pluginSlug ) {
-		helper.setWhenSettable( this.driver, By.css( SEARCH_PLUGINS_SELECTOR ), pluginSlug );
+		helper.setWhenSettable( this.driver, SEARCH_PLUGINS_SELECTOR, pluginSlug );
 		return new ComponentPluginCard( this.driver, pluginSlug );
 	}
 }
