@@ -23,7 +23,7 @@ let driver;
 let page;
 let sidebar;
 
-test.describe( 'FrontPage has sidebar with widgets', () => {
+test.describe( 'FrontPage', () => {
 	test.before( 'Setup browser', function() {
 		this.timeout( startBrowserTimeout );
 
@@ -32,6 +32,14 @@ test.describe( 'FrontPage has sidebar with widgets', () => {
 
 		page = new FrontPage( driver, { url: manager.getPageUrl( '/' ) } );
 		sidebar = page.components.sidebar;
+	} );
+
+	test.it( 'display the page with expected title', () => {
+		assert.eventually.equal(
+			page.titleContains( config.get( 'siteTitle' ) ),
+			true,
+			`Page title is not "${ config.get( 'siteTitle' ) }"`
+		);
 	} );
 
 	test.it( 'display sidebar when page is loaded', () => {
