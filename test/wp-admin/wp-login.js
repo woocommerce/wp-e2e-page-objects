@@ -34,10 +34,13 @@ test.describe( 'Login Page', function() {
 
 	test.it( 'allows user to log in', () => {
 		const wpLogin = new WPLogin( driver, { url: manager.getPageUrl( '/wp-login.php' ) } );
+		assert.eventually.equal( wpLogin.titleContains( 'Log In' ), true, 'Page title does not contain "Log In"' );
+
 		dashboardPage = wpLogin.login(
 			config.get( 'users.admin.username' ),
 			config.get( 'users.admin.password' )
 		);
+		assert.eventually.equal( dashboardPage.titleContains( 'Dashboard' ), true, 'Page title does not contain "Dashboard"' );
 	} );
 
 	test.describe( 'redirects to the dashboard page after logged in', () => {
