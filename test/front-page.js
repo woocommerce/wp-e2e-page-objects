@@ -31,7 +31,7 @@ test.describe( 'FrontPage has sidebar with widgets', () => {
 		driver = manager.getDriver();
 
 		page = new FrontPage( driver, { url: manager.getPageUrl( '/' ) } );
-		sidebar = page.getComponentByName( 'sidebar' );
+		sidebar = page.components.sidebar;
 	} );
 
 	test.it( 'display sidebar when page is loaded', () => {
