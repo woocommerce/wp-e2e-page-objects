@@ -32,18 +32,23 @@ export default class Page {
 	}
 
 	getCurrentUrl() {
-		this.driver.getCurrentUrl();
+		return this.driver.getCurrentUrl();
+	}
+
+	getTitle() {
+		return this.driver.getTitle();
+	}
+
+	titleContains( pattern ) {
+		return this.getTitle().then( ( title ) => {
+			const re = new RegExp( pattern );
+			return re.test( title );
+		}, () => {
+			return false;
+		} );
 	}
 
 	visit() {
 		this.driver.get( this.url );
-	}
-
-	getComponents() {
-		return this.components;
-	}
-
-	getComponentByName( name ) {
-		return this.components[ name ];
 	}
 }
