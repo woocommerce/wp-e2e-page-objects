@@ -1,5 +1,6 @@
 {
 	"url": "http://example.com",
+	"siteTitle": "WP E2E Tests Site",
 	"users": {
 		"admin": {
 			"username": "",
