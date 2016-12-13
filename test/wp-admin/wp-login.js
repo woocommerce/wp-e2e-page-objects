@@ -47,7 +47,11 @@ test.describe( 'Login Page', function() {
 
 	test.describe( 'redirects to the dashboard page after logged in', () => {
 		test.it( 'has welcome panel in the dashboard', () => {
-			assert( dashboardPage.components.welcomePanel.displayed() );
+			assert.eventually.equal(
+				dashboardPage.components.welcomePanel.displayed(),
+				true,
+				'Welcome panel is not displayed in dashboard page'
+			);
 		} );
 	} );
 
