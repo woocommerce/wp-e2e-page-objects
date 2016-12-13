@@ -3,11 +3,13 @@
  */
 import ComponentAdminMenu from '../../components/wp-admin/component-admin-menu';
 import ComponentAdminBar from '../../components/wp-admin/component-admin-bar';
+import ComponentAdminNotice from '../../components/wp-admin/component-admin-notice';
 import Page from '../page';
 
 const components = {
 	adminMenu: ComponentAdminMenu,
-	adminBar: ComponentAdminBar
+	adminBar: ComponentAdminBar,
+	adminNotice: ComponentAdminNotice
 };
 
 const defaultArgs = {
@@ -62,5 +64,17 @@ export default class WPAdmin extends Page {
 
 	hoverMyAccountThenClickSubmenu( submenu ) {
 		return this.components.adminBar.myAccount.hoverMyAccountThenClickSubmenu( submenu );
+	}
+
+	hasNotice( notice ) {
+		return this.components.adminNotice.hasNotice( notice );
+	}
+
+	isNoticeDismissible( notice ) {
+		return this.components.adminNotice.isDismissible( notice );
+	}
+
+	dismissNotice( notice ) {
+		return this.components.adminNotice.dismiss( notice );
 	}
 }

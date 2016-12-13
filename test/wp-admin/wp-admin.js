@@ -10,7 +10,7 @@ import { WebDriverManager, WebDriverHelper as helper } from 'wp-e2e-webdriver';
 /**
  * Internal dependencies
  */
-import { WPAdmin, WPLogin } from '../../src/index';
+import { WPAdmin, WPLogin, WPAdminSettingsGeneral } from '../../src/index';
 
 chai.use( chaiAsPromised );
 const assert = chai.assert;
@@ -303,6 +303,25 @@ test.describe( 'Page inside /wp-admin', function() {
 			wpAdmin.titleContains( 'Log In' ),
 			true,
 			'Could not get login page from clicking "My Account > Log Out"'
+		);
+	} );
+
+	test.it( 'may trigger admin notice after performing some actions', () => {
+		const wpLoginArgs = { url: manager.getPageUrl( '/wp-login.php' ) };
+		const wpLogin = new WPLogin( driver, wpLoginArgs );
+		wpLogin.login(
+			config.get( 'users.admin.username' ),
+			config.get( 'users.admin.password' )
+		);
+
+		const settings = new WPAdminSettingsGeneral( driver, { url: manager.getPageUrl( '/wp-admin/options-general.php' ) } );
+		settings.disableMembership();
+		settings.saveChanges();
+
+		assert.eventually.equal(
+			settings.hasNotice( 'Settings saved.' ),
+			true,
+			'Could not find notice which contains "Settings saved." in general settings page'
 		);
 	} );
 
