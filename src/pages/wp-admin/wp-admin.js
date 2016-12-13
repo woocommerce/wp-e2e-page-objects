@@ -6,19 +6,18 @@ import ComponentAdminBar from '../../components/wp-admin/component-admin-bar';
 import ComponentAdminNotice from '../../components/wp-admin/component-admin-notice';
 import Page from '../page';
 
-const components = {
-	adminMenu: ComponentAdminMenu,
-	adminBar: ComponentAdminBar,
-	adminNotice: ComponentAdminNotice
-};
-
-const defaultArgs = {
-	components: components
-};
+function _getDefaultComponents() {
+	return {
+		adminMenu: ComponentAdminMenu,
+		adminBar: ComponentAdminBar,
+		adminNotice: ComponentAdminNotice
+	};
+}
 
 export default class WPAdmin extends Page {
 	constructor( driver, args = {} ) {
-		args = Object.assign( defaultArgs, args );
+		args = Object.assign( { visit: false, url: '', components: {} }, args );
+		args.components = Object.assign( _getDefaultComponents(), args.components );
 		super( driver, args );
 	}
 
