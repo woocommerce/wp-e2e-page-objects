@@ -28,6 +28,8 @@ test.before( 'Setup browser', function() {
 test.describe( 'Login Page', function() {
 	let dashboardPage;
 
+	this.timeout( config.get( 'mochaTimeoutMs' ) );
+
 	test.before( 'clear cookies and localStorage', () => {
 		helper.clearCookiesAndDeleteLocalStorage( driver );
 	} );
