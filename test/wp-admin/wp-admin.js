@@ -315,7 +315,7 @@ test.describe( 'Page inside /wp-admin', function() {
 		);
 
 		const settings = new WPAdminSettingsGeneral( driver, { url: manager.getPageUrl( '/wp-admin/options-general.php' ) } );
-		settings.disableMembership();
+		settings.checkMembership();
 		settings.saveChanges();
 
 		assert.eventually.equal(
