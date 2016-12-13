@@ -7,7 +7,7 @@ import { WebDriverHelper as helper } from 'wp-e2e-webdriver';
 /**
  * Internal dependencies
  */
-import Page from '../page';
+import WPAdmin from './wp-admin';
 import ComponentMetaBoxCategories from '../../components/wp-admin/component-meta-box-categories';
 import ComponentMetaBoxFormat from '../../components/wp-admin/component-meta-box-publish';
 import ComponentMetaBoxPublish from '../../components/wp-admin/component-meta-box-publish';
@@ -27,7 +27,7 @@ const defaultArgs = {
 	components: components
 };
 
-export default class WPAdminPostEdit extends Page {
+export default class WPAdminPostEdit extends WPAdmin {
 	constructor( driver, args = {} ) {
 		args = Object.assign( defaultArgs, args );
 		super( driver, args );

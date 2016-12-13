@@ -1,7 +1,7 @@
 /**
  * Internal Dependencies
  */
-import Page from '../page';
+import WPAdmin from './wp-admin';
 import ComponentWelcomePanel from '../../components/wp-admin/component-welcome-panel';
 
 const components = {
@@ -14,7 +14,7 @@ const defaultArgs = {
 	components: components
 };
 
-export default class WPAdminDashboard extends Page {
+export default class WPAdminDashboard extends WPAdmin {
 	constructor( driver, args = {} ) {
 		args = Object.assign( defaultArgs, args );
 		super( driver, args );

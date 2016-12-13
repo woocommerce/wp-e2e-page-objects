@@ -7,7 +7,7 @@ import { WebDriverHelper as helper } from 'wp-e2e-webdriver';
 /**
  * Internal dependencies
  */
-import Page from '../page';
+import WPAdmin from './wp-admin';
 import WPAdminPluginInstall from './wp-admin-plugin-install';
 import ComponentPluginsList from '../../components/wp-admin/component-plugins-list';
 
@@ -23,7 +23,7 @@ const defaultArgs = {
 	components: components
 };
 
-export default class WPAdminPlugins extends Page {
+export default class WPAdminPlugins extends WPAdmin {
 	constructor( driver, args = {} ) {
 		args = Object.assign( defaultArgs, args );
 		super( driver, args );

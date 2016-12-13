@@ -3,7 +3,7 @@
  */
 import ComponentPluginInstallFilter from '../../components/wp-admin/component-plugin-install-filter';
 import ComponentPluginCard from '../../components/wp-admin/component-plugin-card';
-import Page from '../page';
+import WPAdmin from './wp-admin';
 
 const components = {
 	filter: ComponentPluginInstallFilter
@@ -15,7 +15,7 @@ const defaultArgs = {
 	components: components
 };
 
-export default class WPAdminPluginInstall extends Page {
+export default class WPAdminPluginInstall extends WPAdmin {
 	constructor( driver, args = {} ) {
 		args = Object.assign( defaultArgs, args );
 		super( driver, args );
