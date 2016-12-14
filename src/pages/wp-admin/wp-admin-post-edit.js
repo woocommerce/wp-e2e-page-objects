@@ -13,7 +13,6 @@ import ComponentMetaBoxFormat from '../../components/wp-admin/component-meta-box
 import ComponentMetaBoxPublish from '../../components/wp-admin/component-meta-box-publish';
 
 const TITLE_SELECTOR = By.css( '#title' );
-const MESSAGE_DISMISS_SELECTOR = By.css( '#message button' );
 
 export default class WPAdminPostEdit extends WPAdmin {
 	constructor( driver, args = {} ) {
@@ -30,12 +29,7 @@ export default class WPAdminPostEdit extends WPAdmin {
 	}
 
 	publish() {
-		this.components.metaBoxPublish.publish();
-
-		return helper.clickWhenClickable(
-			this.driver,
-			MESSAGE_DISMISS_SELECTOR
-		);
+		return this.components.metaBoxPublish.publish();
 	}
 
 	setTitle( title ) {
