@@ -14,7 +14,7 @@ const PUBLISH_SELECTOR = By.css( '#publish' );
 
 export default class ComponentMetaBoxPublish extends ComponentMetaBox {
 	constructor( driver ) {
-		super( driver, METABOX_SELECTOR );
+		super( driver, METABOX_SELECTOR, { wait: false } );
 	}
 
 	publish() {

@@ -17,7 +17,7 @@ const NEW_CATEGORY_SUBMIT_SELECTOR = By.css( '#category-add-submit' );
 
 export default class ComponentMetaBoxCategories extends ComponentMetaBox {
 	constructor( driver ) {
-		super( driver, METABOX_SELECTOR );
+		super( driver, METABOX_SELECTOR, { wait: false } );
 	}
 
 	addCategory( category, parent = '' ) {

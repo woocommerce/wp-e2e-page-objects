@@ -11,9 +11,9 @@ import ComponentMetaBox from './component-meta-box';
 
 const METABOX_SELECTOR = By.css( '#formatdiv' );
 
-export default class ComponentMetaBoxPublish extends ComponentMetaBox {
+export default class ComponentMetaBoxFormat extends ComponentMetaBox {
 	constructor( driver ) {
-		super( driver, METABOX_SELECTOR );
+		super( driver, METABOX_SELECTOR, { wait: false } );
 	}
 
 	setFormat( format = 'standard' ) {
