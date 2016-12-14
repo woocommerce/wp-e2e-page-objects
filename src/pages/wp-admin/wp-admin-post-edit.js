@@ -15,21 +15,17 @@ import ComponentMetaBoxPublish from '../../components/wp-admin/component-meta-bo
 const TITLE_SELECTOR = By.css( '#title' );
 const MESSAGE_DISMISS_SELECTOR = By.css( '#message button' );
 
-const components = {
-	metaBoxCategories: ComponentMetaBoxCategories,
-	metaBoxFormat: ComponentMetaBoxFormat,
-	metaBoxPublish: ComponentMetaBoxPublish
-};
-
-const defaultArgs = {
-	url: '',
-	visit: true,
-	components: components
-};
-
 export default class WPAdminPostEdit extends WPAdmin {
 	constructor( driver, args = {} ) {
-		args = Object.assign( defaultArgs, args );
+		args = Object.assign( { url: '', visit: true, components: {} }, args );
+		args.components = Object.assign(
+			{
+				metaBoxCategories: ComponentMetaBoxCategories,
+				metaBoxFormat: ComponentMetaBoxFormat,
+				metaBoxPublish: ComponentMetaBoxPublish
+			},
+			args.components
+		);
 		super( driver, args );
 	}
 
