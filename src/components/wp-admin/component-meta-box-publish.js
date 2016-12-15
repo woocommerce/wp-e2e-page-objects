@@ -18,6 +18,10 @@ export default class ComponentMetaBoxPublish extends ComponentMetaBox {
 	}
 
 	publish() {
+		this.driver.actions().
+			mouseMove( this.driver.findElement( PUBLISH_SELECTOR ) ).
+			perform();
+
 		return helper.clickWhenClickable( this.driver, PUBLISH_SELECTOR );
 	}
 }
