@@ -32,7 +32,7 @@ export default class ComponentAdminNotice extends Component {
 	}
 
 	_getNoticeXpathExpression( notice ) {
-		return `//div[contains(@class, "notice") and .//*[contains(text(), "${ notice }")]]`;
+		return `//div[(contains(@class, "notice") or contains(@id, "message")) and .//*[contains(text(), "${ notice }")]]`;
 	}
 
 	_getDismissButtonXpathExpression( notice ) {
