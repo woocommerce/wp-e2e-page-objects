@@ -32,6 +32,10 @@ export default class WPAdminPostEdit extends WPAdmin {
 		return this.components.metaBoxPublish.publish();
 	}
 
+	moveToTrash() {
+		return this.components.metaBoxPublish.moveToTrash();
+	}
+
 	setTitle( title ) {
 		return helper.setWhenSettable( this.driver, TITLE_SELECTOR, title );
 	}
