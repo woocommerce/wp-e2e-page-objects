@@ -1,6 +1,6 @@
 {
   "name": "wp-e2e-page-objects",
-  "version": "0.4.5",
+  "version": "0.4.6",
   "description": "WordPress Page Objects to be used on end-to-end tests with Selenium WebDriver",
   "main": "./lib/index.js",
   "scripts": {
