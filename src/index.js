@@ -20,6 +20,7 @@ import ComponentPluginCard from './components/wp-admin/component-plugin-card';
 import ComponentPluginInstallFilter from './components/wp-admin/component-plugin-install-filter';
 import ComponentPluginsList from './components/wp-admin/component-plugins-list';
 import ComponentWelcomePanel from './components/wp-admin/component-welcome-panel';
+import * as PageMap from './page-map';
 import Page from './pages/page';
 import FrontPage from './pages/front-page';
 import WPAdmin from './pages/wp-admin/wp-admin';
@@ -53,6 +54,7 @@ export {
 	ComponentPluginInstallFilter,
 	ComponentPluginsList,
 	ComponentWelcomePanel,
+	PageMap,
 	Page,
 	FrontPage,
 	WPAdmin,
