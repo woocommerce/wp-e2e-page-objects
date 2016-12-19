@@ -1,6 +1,7 @@
 /**
  * External dependencies
  */
+import { By } from 'selenium-webdriver';
 import { forEach } from 'lodash';
 
 const defaultArgs = {
@@ -43,6 +44,15 @@ export default class Page {
 		return this.getTitle().then( ( title ) => {
 			const re = new RegExp( pattern );
 			return re.test( title );
+		}, () => {
+			return false;
+		} );
+	}
+
+	hasText( text ) {
+		const selector = By.xpath( `//body//*[contains(., "${ text }")]` );
+		return this.driver.findElement( selector ).then( ( el ) => {
+			return el.isDisplayed();
 		}, () => {
 			return false;
 		} );
