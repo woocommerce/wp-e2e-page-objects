@@ -10,10 +10,14 @@ import { WebDriverManager, WebDriverHelper as helper } from 'wp-e2e-webdriver';
 /**
  * Internal dependencies
  */
-import { WPLogin, WPAdminPostNew } from '../../src/index';
+import { PageMap, WPLogin, WPAdminPostNew } from '../../src/index';
 
 chai.use( chaiAsPromised );
+
+// Shortcut.
 const assert = chai.assert;
+const PAGE = PageMap.PAGE;
+const getPageUrl = PageMap.getPageUrl;
 
 let manager;
 let driver;
@@ -22,7 +26,7 @@ let page;
 test.before( 'Setup browser', function() {
 	this.timeout( config.get( 'startBrowserTimeoutMs' ) );
 
-	manager = new WebDriverManager( 'chrome', { baseUrl: config.get( 'url' ) } );
+	manager = new WebDriverManager( 'chrome' );
 	driver = manager.getDriver();
 } );
 
@@ -32,15 +36,13 @@ test.describe( 'New Post', function() {
 	test.before( 'login and goes to new post page', () => {
 		helper.clearCookiesAndDeleteLocalStorage( driver );
 
-		const wpLoginArgs = { url: manager.getPageUrl( '/wp-login.php' ) };
-		const wpLogin = new WPLogin( driver, wpLoginArgs );
+		const wpLogin = new WPLogin( driver, { url: getPageUrl( config.get( 'url' ), PAGE.WP_LOGIN ) } );
 		wpLogin.login(
 			config.get( 'users.admin.username' ),
 			config.get( 'users.admin.password' )
 		);
 
-		const pageArgs = { url: manager.getPageUrl( '/wp-admin/post-new.php' ) };
-		page = new WPAdminPostNew( driver, pageArgs );
+		page = new WPAdminPostNew( driver, { url: getPageUrl( config.get( 'url' ), PAGE.WP_ADMIN_NEW_POST ) } );
 	} );
 
 	test.it( 'can create a new post', () => {

@@ -10,10 +10,14 @@ import { WebDriverManager, WebDriverHelper as helper } from 'wp-e2e-webdriver';
 /**
  * Internal dependencies
  */
-import { WPLogin } from '../../src/index';
+import { PageMap, WPLogin } from '../../src/index';
 
 chai.use( chaiAsPromised );
+
+// Shortcut.
 const assert = chai.assert;
+const PAGE = PageMap.PAGE;
+const getPageUrl = PageMap.getPageUrl;
 
 let manager;
 let driver;
@@ -21,7 +25,7 @@ let driver;
 test.before( 'Setup browser', function() {
 	this.timeout( config.get( 'startBrowserTimeoutMs' ) );
 
-	manager = new WebDriverManager( 'chrome', { baseUrl: config.get( 'url' ) } );
+	manager = new WebDriverManager( 'chrome' );
 	driver = manager.getDriver();
 } );
 
@@ -35,7 +39,8 @@ test.describe( 'Login Page', function() {
 	} );
 
 	test.it( 'allows user to log in', () => {
-		const wpLogin = new WPLogin( driver, { url: manager.getPageUrl( '/wp-login.php' ) } );
+		const url = getPageUrl( config.get( 'url' ), PAGE.WP_LOGIN );
+		const wpLogin = new WPLogin( driver, { url: url } );
 		assert.eventually.equal( wpLogin.titleContains( 'Log In' ), true, 'Page title does not contain "Log In"' );
 
 		dashboardPage = wpLogin.login(

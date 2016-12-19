@@ -10,10 +10,14 @@ import { WebDriverManager, WebDriverHelper as helper } from 'wp-e2e-webdriver';
 /**
  * Internal dependencies
  */
-import { WPAdmin, WPLogin, WPAdminSettingsGeneral } from '../../src/index';
+import { PageMap, WPAdmin, WPLogin, WPAdminSettingsGeneral } from '../../src/index';
 
 chai.use( chaiAsPromised );
+
+// Shortcut.
 const assert = chai.assert;
+const PAGE = PageMap.PAGE;
+const getPageUrl = PageMap.getPageUrl;
 
 let manager;
 let driver;
@@ -21,7 +25,7 @@ let driver;
 test.before( 'Setup browser', function() {
 	this.timeout( config.get( 'startBrowserTimeoutMs' ) );
 
-	manager = new WebDriverManager( 'chrome', { baseUrl: config.get( 'url' ) } );
+	manager = new WebDriverManager( 'chrome' );
 	driver = manager.getDriver();
 } );
 
@@ -31,8 +35,8 @@ test.describe( 'Page inside /wp-admin', function() {
 	test.before( 'login as admin', () => {
 		helper.clearCookiesAndDeleteLocalStorage( driver );
 
-		const wpLoginArgs = { url: manager.getPageUrl( '/wp-login.php' ) };
-		const wpLogin = new WPLogin( driver, wpLoginArgs );
+		const url = getPageUrl( config.get( 'url' ), PAGE.WP_LOGIN );
+		const wpLogin = new WPLogin( driver, { url: url } );
 		wpLogin.login(
 			config.get( 'users.admin.username' ),
 			config.get( 'users.admin.password' )
@@ -307,14 +311,13 @@ test.describe( 'Page inside /wp-admin', function() {
 	} );
 
 	test.it( 'may trigger admin notice after performing some actions', () => {
-		const wpLoginArgs = { url: manager.getPageUrl( '/wp-login.php' ) };
-		const wpLogin = new WPLogin( driver, wpLoginArgs );
+		const wpLogin = new WPLogin( driver, { url: getPageUrl( config.get( 'url' ), PAGE.WP_LOGIN ) } );
 		wpLogin.login(
 			config.get( 'users.admin.username' ),
 			config.get( 'users.admin.password' )
 		);
 
-		const settings = new WPAdminSettingsGeneral( driver, { url: manager.getPageUrl( '/wp-admin/options-general.php' ) } );
+		const settings = new WPAdminSettingsGeneral( driver, { url: getPageUrl( config.get( 'url' ), PAGE.WP_ADMIN_SETTINGS_GENERAL ) } );
 		settings.checkMembership();
 		settings.saveChanges();
 

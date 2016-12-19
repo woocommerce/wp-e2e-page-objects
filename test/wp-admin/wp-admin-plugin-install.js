@@ -10,10 +10,14 @@ import { WebDriverManager, WebDriverHelper as helper } from 'wp-e2e-webdriver';
 /**
  * Internal dependencies
  */
-import { WPLogin, WPAdminPlugins, WPAdminPluginInstall } from '../../src/index';
+import { PageMap, WPLogin, WPAdminPlugins, WPAdminPluginInstall } from '../../src/index';
 
 chai.use( chaiAsPromised );
+
+// Shortcut.
 const assert = chai.assert;
+const PAGE = PageMap.PAGE;
+const getPageUrl = PageMap.getPageUrl;
 
 let manager;
 let driver;
@@ -22,7 +26,7 @@ let page;
 test.before( 'Setup browser', function() {
 	this.timeout( config.get( 'startBrowserTimeoutMs' ) );
 
-	manager = new WebDriverManager( 'chrome', { baseUrl: config.get( 'url' ) } );
+	manager = new WebDriverManager( 'chrome' );
 	driver = manager.getDriver();
 } );
 
@@ -32,14 +36,14 @@ test.describe( 'Add Plugins Page', function() {
 	test.before( 'login and goes to install plugin page', () => {
 		helper.clearCookiesAndDeleteLocalStorage( driver );
 
-		const wpLoginArgs = { url: manager.getPageUrl( '/wp-login.php' ) };
+		const wpLoginArgs = { url: getPageUrl( config.get( 'url' ), PAGE.WP_LOGIN ) };
 		const wpLogin = new WPLogin( driver, wpLoginArgs );
 		wpLogin.login(
 			config.get( 'users.admin.username' ),
 			config.get( 'users.admin.password' )
 		);
 
-		const pageArgs = { url: manager.getPageUrl( '/wp-admin/plugin-install.php' ) };
+		const pageArgs = { url: getPageUrl( config.get( 'url' ), PAGE.WP_ADMIN_NEW_PLUGIN ) };
 		page = new WPAdminPluginInstall( driver, pageArgs );
 	} );
 
@@ -66,7 +70,7 @@ test.describe( 'Add Plugins Page', function() {
 	} );
 
 	test.after( 'Deactivate and delete plugin "woocommerce" then quit browser', () => {
-		const pageArgs = { url: manager.getPageUrl( '/wp-admin/plugins.php' ) };
+		const pageArgs = { url: getPageUrl( config.get( 'url' ), PAGE.WP_ADMIN_PLUGINS ) };
 		const pagePlugins = new WPAdminPlugins( driver, pageArgs );
 		pagePlugins.deactivate( 'woocommerce' );
 

@@ -10,13 +10,16 @@ import { WebDriverManager } from 'wp-e2e-webdriver';
 /**
  * Internal dependencies
  */
-import { FrontPage } from '../src/index';
+import { PageMap, FrontPage } from '../src/index';
 
 const startBrowserTimeout = 30000;
 
 chai.use( chaiAsPromised );
 
+// Shortcut.
 const assert = chai.assert;
+const PAGE = PageMap.PAGE;
+const getPageUrl = PageMap.getPageUrl;
 
 let manager;
 let driver;
@@ -27,10 +30,11 @@ test.describe( 'FrontPage', () => {
 	test.before( 'Setup browser', function() {
 		this.timeout( startBrowserTimeout );
 
-		manager = new WebDriverManager( 'chrome', { baseUrl: config.get( 'url' ) } );
+		manager = new WebDriverManager( 'chrome' );
 		driver = manager.getDriver();
 
-		page = new FrontPage( driver, { url: manager.getPageUrl( '/' ) } );
+		const url = getPageUrl( config.get( 'url' ), PAGE.FRONT_PAGE );
+		page = new FrontPage( driver, { url: url } );
 		sidebar = page.components.sidebar;
 	} );
 
