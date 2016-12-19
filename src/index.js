@@ -33,6 +33,8 @@ import WPAdminPosts from './pages/wp-admin/wp-admin-posts';
 import WPAdminSettings from './pages/wp-admin/wp-admin-settings';
 import WPAdminSettingsGeneral from './pages/wp-admin/wp-admin-settings-general';
 import WPLogin from './pages/wp-admin/wp-login';
+import UserFlow from './flows/user-flow';
+import VisitorFlow from './flows/visitor-flow';
 
 export {
 	Component,
@@ -66,5 +68,7 @@ export {
 	WPAdminPosts,
 	WPAdminSettings,
 	WPAdminSettingsGeneral,
-	WPLogin
+	WPLogin,
+	UserFlow,
+	VisitorFlow
 };
