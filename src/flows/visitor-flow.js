@@ -27,6 +27,8 @@ export default class UserFlow {
 			visit: true
 		};
 
-		return new PageObject( this.driver, pageArgs );
+		this.currentPage = new PageObject( this.driver, pageArgs );
+
+		return this.currentPage;
 	}
 }
