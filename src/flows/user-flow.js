@@ -36,4 +36,8 @@ export default class UserFlow {
 
 		return this.currentPage;
 	}
+
+	logout() {
+		return this.currentPage.hoverMyAccountThenClickSubmenu( 'Log Out' );
+	}
 }

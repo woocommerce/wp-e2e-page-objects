@@ -46,6 +46,17 @@ test.describe( 'UserFlow', function() {
 		assert.eventually.ok( settingsPage.hasNotice( 'Settings saved.' ) );
 	} );
 
+	test.it( 'allows to log the user out from /wp-admin/', () => {
+		const flowArgs = {
+			baseUrl: config.get( 'url' ),
+			username: config.get( 'users.admin.username' ),
+			password: config.get( 'users.admin.password' )
+		};
+		const userFlow = new UserFlow( driver, flowArgs );
+
+		assert.eventually.ok( userFlow.logout() );
+	} );
+
 	test.after( () => {
 		manager.quitBrowser();
 	} );
