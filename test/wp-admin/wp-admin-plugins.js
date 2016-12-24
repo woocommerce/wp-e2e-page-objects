@@ -23,7 +23,7 @@ let manager;
 let driver;
 let page;
 
-test.describe( 'Plugins Page', function() {
+test.describe( 'WPAdminPlugins', function() {
 	test.before( 'open browser', function() {
 		this.timeout( config.get( 'startBrowserTimeoutMs' ) );
 

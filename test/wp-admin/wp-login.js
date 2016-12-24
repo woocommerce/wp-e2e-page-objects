@@ -23,7 +23,7 @@ let manager;
 let driver;
 let dashboardPage;
 
-test.describe( 'Login Page', function() {
+test.describe( 'WPLogin', function() {
 	test.before( 'open browser', function() {
 		this.timeout( config.get( 'startBrowserTimeoutMs' ) );
 

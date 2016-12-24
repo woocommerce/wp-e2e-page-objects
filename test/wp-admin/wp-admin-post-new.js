@@ -23,7 +23,7 @@ let manager;
 let driver;
 let page;
 
-test.describe( 'New Post', function() {
+test.describe( 'WPAdminPostNew', function() {
 	test.before( 'open browser', function() {
 		this.timeout( config.get( 'startBrowserTimeoutMs' ) );
 

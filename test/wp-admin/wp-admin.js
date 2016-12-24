@@ -22,7 +22,7 @@ const getPageUrl = PageMap.getPageUrl;
 let manager;
 let driver;
 
-test.describe( 'Page inside /wp-admin', function() {
+test.describe( 'WPAdmin', function() {
 	test.before( 'open browser', function() {
 		this.timeout( config.get( 'startBrowserTimeoutMs' ) );
 
