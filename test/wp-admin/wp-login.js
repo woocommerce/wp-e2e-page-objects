@@ -21,16 +21,15 @@ const getPageUrl = PageMap.getPageUrl;
 
 let manager;
 let driver;
-
-test.before( 'Setup browser', function() {
-	this.timeout( config.get( 'startBrowserTimeoutMs' ) );
-
-	manager = new WebDriverManager( 'chrome' );
-	driver = manager.getDriver();
-} );
+let dashboardPage;
 
 test.describe( 'Login Page', function() {
-	let dashboardPage;
+	test.before( 'open browser', function() {
+		this.timeout( config.get( 'startBrowserTimeoutMs' ) );
+
+		manager = new WebDriverManager( 'chrome' );
+		driver = manager.getDriver();
+	} );
 
 	this.timeout( config.get( 'mochaTimeoutMs' ) );
 
@@ -60,7 +59,7 @@ test.describe( 'Login Page', function() {
 		} );
 	} );
 
-	test.after( () => {
+	test.after( 'quit browser', () => {
 		manager.quitBrowser();
 	} );
 } );

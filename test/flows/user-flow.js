@@ -21,14 +21,14 @@ const PAGE = PageMap.PAGE;
 let manager;
 let driver;
 
-test.before( 'Setup browser', function() {
-	this.timeout( config.get( 'startBrowserTimeoutMs' ) );
-
-	manager = new WebDriverManager( 'chrome', { baseUrl: config.get( 'url' ) } );
-	driver = manager.getDriver();
-} );
-
 test.describe( 'UserFlow', function() {
+	test.before( 'open browser', function() {
+		this.timeout( config.get( 'startBrowserTimeoutMs' ) );
+
+		manager = new WebDriverManager( 'chrome', { baseUrl: config.get( 'url' ) } );
+		driver = manager.getDriver();
+	} );
+
 	this.timeout( config.get( 'mochaTimeoutMs' ) );
 
 	test.it( 'allows to open any /wp-admin/ page and returns its page object', () => {
@@ -57,7 +57,7 @@ test.describe( 'UserFlow', function() {
 		assert.eventually.ok( userFlow.logout() );
 	} );
 
-	test.after( () => {
+	test.after( 'quit browser', () => {
 		manager.quitBrowser();
 	} );
 } );

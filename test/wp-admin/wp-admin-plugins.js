@@ -23,14 +23,14 @@ let manager;
 let driver;
 let page;
 
-test.before( 'Setup browser', function() {
-	this.timeout( config.get( 'startBrowserTimeoutMs' ) );
-
-	manager = new WebDriverManager( 'chrome' );
-	driver = manager.getDriver();
-} );
-
 test.describe( 'Plugins Page', function() {
+	test.before( 'open browser', function() {
+		this.timeout( config.get( 'startBrowserTimeoutMs' ) );
+
+		manager = new WebDriverManager( 'chrome' );
+		driver = manager.getDriver();
+	} );
+
 	this.timeout( config.get( 'mochaTimeoutMs' ) );
 
 	test.before( 'login and goes to plugins page', () => {
@@ -78,7 +78,7 @@ test.describe( 'Plugins Page', function() {
 		);
 	} );
 
-	test.after( () => {
+	test.after( 'quit browser', () => {
 		manager.quitBrowser();
 	} );
 } );

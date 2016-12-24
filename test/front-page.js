@@ -27,7 +27,7 @@ let page;
 let sidebar;
 
 test.describe( 'FrontPage', () => {
-	test.before( 'Setup browser', function() {
+	test.before( 'open browser', function() {
 		this.timeout( startBrowserTimeout );
 
 		manager = new WebDriverManager( 'chrome' );
@@ -60,7 +60,7 @@ test.describe( 'FrontPage', () => {
 		} );
 	} );
 
-	test.after( () => {
+	test.after( 'quit browser', () => {
 		manager.quitBrowser();
 	} );
 } );

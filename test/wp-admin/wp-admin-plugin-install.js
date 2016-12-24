@@ -23,14 +23,14 @@ let manager;
 let driver;
 let page;
 
-test.before( 'Setup browser', function() {
-	this.timeout( config.get( 'startBrowserTimeoutMs' ) );
-
-	manager = new WebDriverManager( 'chrome' );
-	driver = manager.getDriver();
-} );
-
 test.describe( 'Add Plugins Page', function() {
+	test.before( 'open browser', function() {
+		this.timeout( config.get( 'startBrowserTimeoutMs' ) );
+
+		manager = new WebDriverManager( 'chrome' );
+		driver = manager.getDriver();
+	} );
+
 	this.timeout( config.get( 'mochaTimeoutMs' ) );
 
 	test.before( 'login and goes to install plugin page', () => {
@@ -69,7 +69,7 @@ test.describe( 'Add Plugins Page', function() {
 		);
 	} );
 
-	test.after( 'Deactivate and delete plugin "woocommerce" then quit browser', () => {
+	test.after( 'deactivate and delete plugin "woocommerce" then quit browser', () => {
 		const pageArgs = { url: getPageUrl( config.get( 'url' ), PAGE.WP_ADMIN_PLUGINS ) };
 		const pagePlugins = new WPAdminPlugins( driver, pageArgs );
 		pagePlugins.deactivate( 'woocommerce' );

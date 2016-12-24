@@ -23,14 +23,14 @@ let manager;
 let driver;
 let page;
 
-test.before( 'Setup browser', function() {
-	this.timeout( config.get( 'startBrowserTimeoutMs' ) );
-
-	manager = new WebDriverManager( 'chrome' );
-	driver = manager.getDriver();
-} );
-
 test.describe( 'New Post', function() {
+	test.before( 'open browser', function() {
+		this.timeout( config.get( 'startBrowserTimeoutMs' ) );
+
+		manager = new WebDriverManager( 'chrome' );
+		driver = manager.getDriver();
+	} );
+
 	this.timeout( config.get( 'mochaTimeoutMs' ) );
 
 	test.before( 'login and goes to new post page', () => {
@@ -55,7 +55,7 @@ test.describe( 'New Post', function() {
 		assert.eventually.equal( page.publish(), true );
 	} );
 
-	test.after( 'Quit browser', () => {
+	test.after( 'quit browser', () => {
 		manager.quitBrowser();
 	} );
 } );

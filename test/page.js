@@ -23,7 +23,7 @@ let driver;
 let page;
 
 test.describe( 'Page', function() {
-	test.before( 'Setup browser', function() {
+	test.before( 'open browser', function() {
 		this.timeout( config.get( 'startBrowserTimeoutMs' ) );
 
 		manager = new WebDriverManager( 'chrome' );
@@ -95,7 +95,7 @@ test.describe( 'Page', function() {
 		);
 	} );
 
-	test.after( () => {
+	test.after( 'quit browser', () => {
 		manager.quitBrowser();
 	} );
 } );

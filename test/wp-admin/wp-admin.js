@@ -22,14 +22,14 @@ const getPageUrl = PageMap.getPageUrl;
 let manager;
 let driver;
 
-test.before( 'Setup browser', function() {
-	this.timeout( config.get( 'startBrowserTimeoutMs' ) );
-
-	manager = new WebDriverManager( 'chrome' );
-	driver = manager.getDriver();
-} );
-
 test.describe( 'Page inside /wp-admin', function() {
+	test.before( 'open browser', function() {
+		this.timeout( config.get( 'startBrowserTimeoutMs' ) );
+
+		manager = new WebDriverManager( 'chrome' );
+		driver = manager.getDriver();
+	} );
+
 	this.timeout( config.get( 'mochaTimeoutMs' ) );
 
 	test.before( 'login as admin', () => {
@@ -328,7 +328,7 @@ test.describe( 'Page inside /wp-admin', function() {
 		);
 	} );
 
-	test.after( 'Quit browser', () => {
+	test.after( 'quit browser', () => {
 		manager.quitBrowser();
 	} );
 } );
