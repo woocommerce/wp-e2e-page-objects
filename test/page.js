@@ -72,7 +72,7 @@ test.describe( 'Page', function() {
 		);
 	} );
 
-	test.it( 'hasText check if passed text appears in current page', () => {
+	test.it( 'hasText checks if passed text appears in current page', () => {
 		assert.eventually.ok(
 			page.hasText( 'Just another WordPress site' )
 		);
