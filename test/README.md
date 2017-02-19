@@ -20,5 +20,5 @@ Test config files can be found in `test/config`. To override specific config bas
 ## Running specific test file
 
 ```
-env NODE_CONFIG_DIR='./tets/config' ./node_modules/mocha/bin/mocha --compilers js:babel-register test/front-page.js
+env NODE_CONFIG_DIR='./test/config' ./node_modules/mocha/bin/mocha --compilers js:babel-register test/front-page.js
 ```
