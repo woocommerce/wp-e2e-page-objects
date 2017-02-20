@@ -2,6 +2,7 @@
  * Internal Dependencies
  */
 import Component from './components/component';
+import ComponentComment from './components/component-comment';
 import ComponentSidebar from './components/component-sidebar';
 import ComponentWidget from './components/component-widget';
 import ComponentWidgetRecentPosts from './components/component-widget-recent-posts';
@@ -38,6 +39,7 @@ import VisitorFlow from './flows/visitor-flow';
 
 export {
 	Component,
+	ComponentComment,
 	ComponentSidebar,
 	ComponentWidget,
 	ComponentWidgetRecentPosts,
