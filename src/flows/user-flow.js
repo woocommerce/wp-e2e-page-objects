@@ -37,6 +37,28 @@ export default class UserFlow {
 		return this.currentPage;
 	}
 
+	createPost( args ) {
+		args = Object.assign(
+			{
+				title: '',
+			},
+			args
+		);
+
+		const newPost = this.open( PAGE.WP_ADMIN_NEW_POST );
+
+		// TODO(gedex): set content, status, etc.
+		newPost.setTitle( args.title );
+		return newPost.publish();
+	}
+
+	addComment( postTitle, comment ) {
+		const postsList = this.open( PAGE.WP_ADMIN_POSTS );
+		const post = postsList.viewPostWithTitle( postTitle );
+
+		return post.postComment( comment );
+	}
+
 	logout() {
 		return this.currentPage.hoverMyAccountThenClickSubmenu( 'Log Out' );
 	}
