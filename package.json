@@ -35,7 +35,7 @@
   "dependencies": {
     "lodash": "^4.13.1",
     "sprintf-js": "^1.0.3",
-    "wp-e2e-webdriver": "^0.9.1"
+    "wp-e2e-webdriver": "0.10.0"
   },
   "devDependencies": {
     "babel": "^6.5.2",
