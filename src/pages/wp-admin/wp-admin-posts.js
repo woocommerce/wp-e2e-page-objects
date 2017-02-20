@@ -2,6 +2,7 @@
  * Internal Dependencies
  */
 import ComponentPostsList from '../../components/wp-admin/component-posts-list';
+import SinglePage from '../single-page';
 import WPAdmin from './wp-admin';
 import WPAdminPostEdit from './wp-admin-post-edit';
 
@@ -21,8 +22,21 @@ export default class WPAdminPosts extends WPAdmin {
 		super( driver, args );
 	}
 
+	search( keyword ) {
+		return this.components.postsList.search( keyword );
+	}
+
 	editPostWithTitle( title ) {
 		this.components.postsList.editPostWithTitle( title );
 		return new WPAdminPostEdit( this.driver, { visit: false } );
+	}
+
+	viewPostWithTitle( title ) {
+		this.components.postsList.viewPostWithTitle( title );
+		return new SinglePage( this.driver, { visit: false } );
+	}
+
+	trashPostWithTitle( title ) {
+		return this.components.postsList.trashPostWithTitle( title );
 	}
 }
