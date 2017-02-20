@@ -191,7 +191,7 @@ test.describe( 'WPAdmin', function() {
 
 	test.it( 'has quick links in the admin bar', () => {
 		const wpAdmin = new WPAdmin( driver, { visit: false } );
-		[ 'About WordPress', config.get( 'siteTitle' ), 'comment awaiting moderation', 'New' ].forEach( ( menu ) => {
+		[ 'About WordPress', config.get( 'siteTitle' ), 'awaiting moderation', 'New' ].forEach( ( menu ) => {
 			assert.eventually.equal( wpAdmin.hasQuickLink( menu ), true, `Could not find quick link "${ menu }"` );
 		} );
 	} );
@@ -201,7 +201,7 @@ test.describe( 'WPAdmin', function() {
 		const quickLinkMapsToTitle = [
 			[ 'About WordPress', 'About' ],
 			[ config.get( 'siteTitle' ), config.get( 'siteTitle' ) ],
-			[ 'comment awaiting moderation', 'Comments' ],
+			[ 'awaiting moderation', 'Comments' ],
 			[ 'New', 'Add New Post' ]
 		];
 
