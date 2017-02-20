@@ -16,21 +16,47 @@ const SEARCH_SUBMIT_SELECTOR = By.css( '#search-submit' );
 export default class ComponentPostsList extends Component {
 	constructor( driver, selector = POSTS_LIST_SELECTOR ) {
 		super( driver, By.css( selector ) );
-
-		this.searchInput = driver.findElement( SEARCH_INPUT_SELECTOR );
-		this.searchSubmit = driver.findElement( SEARCH_SUBMIT_SELECTOR );
 	}
 
-	searchPosts( keyword ) {
-		helper.setWhenSettable(
-			this.driver,
-			this.searchInput,
-			keyword
-		);
+	search( keyword ) {
+		helper.mouseMoveTo( this.driver, SEARCH_INPUT_SELECTOR );
+		helper.setWhenSettable( this.driver, SEARCH_INPUT_SELECTOR, keyword );
+		return helper.clickWhenClickable( this.driver, SEARCH_SUBMIT_SELECTOR );
 	}
 
 	editPostWithTitle( title ) {
-		const postTitleSelector = By.xpath( `//a[@class='row-title' and text()='${ title }']` );
-		return helper.clickWhenClickable( this.driver, postTitleSelector );
+		this._mouseOverPostTitle( title );
+		return helper.clickWhenClickable( this.driver, this._getPostTitleSelector( title ) );
+	}
+
+	viewPostWithTitle( title ) {
+		this._mouseOverPostTitle( title );
+		return helper.clickWhenClickable( this.driver, this._getRowActionSelector( title, 'view' ) );
+	}
+
+	trashPostWithTitle( title ) {
+		this._mouseOverPostTitle( title );
+		return helper.clickWhenClickable( this.driver, this._getRowActionSelector( title, 'trash' ) );
+	}
+
+	_getPostTitleSelector( title ) {
+		return By.xpath( this._getPostTitleXpathExpression( title ) );
+	}
+
+	_getRowActionSelector( title, action ) {
+		return By.xpath( this._getRowActionXpathExpression( title, action ) );
+	}
+
+	_getPostTitleXpathExpression( title ) {
+		return `//a[@class='row-title' and text()='${ title }']`;
+	}
+
+	_getRowActionXpathExpression( title, action ) {
+		return `//td[(contains(@class, "column-title")) and .${ this._getPostTitleXpathExpression( title ) }]` +
+			`//*[contains(@class, "${ action }")]/a`;
+	}
+
+	_mouseOverPostTitle( title ) {
+		return helper.mouseMoveTo( this.driver, this._getPostTitleSelector( title ) );
 	}
 }
