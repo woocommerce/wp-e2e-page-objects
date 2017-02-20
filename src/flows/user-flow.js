@@ -37,19 +37,21 @@ export default class UserFlow {
 		return this.currentPage;
 	}
 
-	createPost( args ) {
-		args = Object.assign(
+	createPost( post ) {
+		post = Object.assign(
 			{
 				title: '',
+				status: 'Published'
 			},
-			args
+			post
 		);
 
-		const newPost = this.open( PAGE.WP_ADMIN_NEW_POST );
+		const newPostPage = this.open( PAGE.WP_ADMIN_NEW_POST );
+		this._setPost( newPostPage, post );
 
-		// TODO(gedex): set content, status, etc.
-		newPost.setTitle( args.title );
-		return newPost.publish();
+		return post.status === 'Published'
+			? newPostPage.publish()
+			: newPostPage.save();
 	}
 
 	addComment( postTitle, comment ) {
@@ -57,6 +59,18 @@ export default class UserFlow {
 		const post = postsList.viewPostWithTitle( postTitle );
 
 		return post.postComment( comment );
+	}
+
+	_setPost( page, post ) {
+		// TODO(gedex): set content, status, etc.
+
+		if ( post.title ) {
+			page.setTitle( post.title );
+		}
+
+		if ( post.status ) {
+			page.selectStatus( post.status );
+		}
 	}
 
 	logout() {
