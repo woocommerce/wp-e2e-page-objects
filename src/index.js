@@ -24,6 +24,7 @@ import ComponentWelcomePanel from './components/wp-admin/component-welcome-panel
 import * as PageMap from './page-map';
 import Page from './pages/page';
 import FrontPage from './pages/front-page';
+import SinglePage from './pages/single-page';
 import WPAdmin from './pages/wp-admin/wp-admin';
 import WPAdminDashboard from './pages/wp-admin/wp-admin-dashboard';
 import WPAdminPluginInstall from './pages/wp-admin/wp-admin-plugin-install';
@@ -61,6 +62,7 @@ export {
 	PageMap,
 	Page,
 	FrontPage,
+	SinglePage,
 	WPAdmin,
 	WPAdminDashboard,
 	WPAdminPluginInstall,
