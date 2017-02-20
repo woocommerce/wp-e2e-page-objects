@@ -23,7 +23,8 @@ export default class WPAdminPosts extends WPAdmin {
 	}
 
 	search( keyword ) {
-		return this.components.postsList.search( keyword );
+		this.components.postsList.search( keyword );
+		return this;
 	}
 
 	editPostWithTitle( title ) {
@@ -37,6 +38,7 @@ export default class WPAdminPosts extends WPAdmin {
 	}
 
 	trashPostWithTitle( title ) {
-		return this.components.postsList.trashPostWithTitle( title );
+		this.components.postsList.trashPostWithTitle( title );
+		return this;
 	}
 }
