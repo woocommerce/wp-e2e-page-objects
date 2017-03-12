@@ -1,6 +1,10 @@
 wp-page-objects
 ===============
 
+[![npm version](https://img.shields.io/npm/v/wp-e2e-page-objects.svg?style=flat)](https://www.npmjs.com/package/wp-e2e-page-objects)
+[![build status](https://api.travis-ci.org/woocommerce/wp-e2e-page-objects.svg)](http://travis-ci.org/woocommerce/wp-e2e-page-objects)
+[![dependency status](https://david-dm.org/woocommerce/wp-e2e-page-objects.svg)](https://david-dm.org/woocommerce/wp-e2e-page-objects)
+
 WordPress Page Objects to be used on end-to-end tests with Selenium WebDriver.
 
 ## Install
