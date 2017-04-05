@@ -33,7 +33,7 @@ let manager;
 let driver;
 let user;
 
-test.describe.only( 'SinglePage', function() {
+test.describe( 'SinglePage', function() {
 	test.before( 'open browser', function() {
 		this.timeout( startBrowserTimeout );
 
