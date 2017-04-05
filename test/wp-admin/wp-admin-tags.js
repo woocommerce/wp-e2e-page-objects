@@ -23,16 +23,16 @@ const userFlowArgs = {
 	username: config.get( 'users.admin.username' ),
 	password: config.get( 'users.admin.password' )
 };
-const testPosts = [
-	{ title: 'Test post ' + new Date().getTime() + ' #1' },
-	{ title: 'Test post ' + new Date().getTime() + ' #2' },
+const testTags = [
+	{ name: 'Tag ' + new Date().getTime() + ' #1' },
+	{ name: 'Tag ' + new Date().getTime() + ' #2' },
 ];
 
 let manager;
 let driver;
 let user;
 
-test.describe( 'WPAdminPosts', function() {
+test.describe( 'WPAdminTags', function() {
 	test.before( 'open browser', function() {
 		this.timeout( config.get( 'startBrowserTimeoutMs' ) );
 
@@ -42,37 +42,37 @@ test.describe( 'WPAdminPosts', function() {
 
 	this.timeout( config.get( 'mochaTimeoutMs' ) );
 
-	test.before( 'create posts', () => {
+	test.before( 'create tags', () => {
 		user = new UserFlow( driver, userFlowArgs );
 
-		testPosts.forEach( post => {
-			user.createPost( post );
+		testTags.forEach( tag => {
+			user.createTag( tag );
 		} );
 	} );
 
-	test.it( 'can edit posts', () => {
-		testPosts.forEach( post => {
-			const postsList = user.open( PAGE.WP_ADMIN_POSTS );
-			postsList.search( post.title );
+	test.it( 'can edit tag', () => {
+		testTags.forEach( tag => {
+			const tagsList = user.open( PAGE.WP_ADMIN_TAGS );
+			tagsList.search( tag.name );
 
-			const editPost = postsList.editPostWithTitle( post.title );
-			assert.eventually.ok( editPost.titleContains( 'Edit Post' ) );
+			const editTag = tagsList.editTagWithName( tag.name );
+			assert.eventually.ok( editTag.titleContains( 'Edit Tag' ) );
 		} );
 	} );
 
-	test.it( 'can view posts', () => {
-		testPosts.forEach( post => {
-			const postsList = user.open( PAGE.WP_ADMIN_POSTS );
-			const page = postsList.viewPostWithTitle( post.title );
-			assert.eventually.ok( page.titleContains( post.title ) );
+	test.it( 'can view tag', () => {
+		testTags.forEach( tag => {
+			const tagsList = user.open( PAGE.WP_ADMIN_TAGS );
+			const page = tagsList.viewTagWithName( tag.name );
+			assert.eventually.ok( page.titleContains( tag.name ) );
 		} );
 	} );
 
-	test.it( 'can trash posts', () => {
-		testPosts.forEach( post => {
-			const postsList = user.open( PAGE.WP_ADMIN_POSTS );
-			postsList.trashPostWithTitle( post.title );
-			assert.eventually.ok( postsList.hasNotice( '1 post moved to the Trash.' ) );
+	test.it( 'can delete tag', () => {
+		testTags.forEach( tag => {
+			const tagsList = user.open( PAGE.WP_ADMIN_TAGS );
+			tagsList.deleteTagWithName( tag.name );
+			// TODO(gedex): Missing assertion here.
 		} );
 	} );
 

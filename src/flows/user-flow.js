@@ -54,13 +54,6 @@ export default class UserFlow {
 			: newPostPage.save();
 	}
 
-	addComment( postTitle, comment ) {
-		const postsList = this.open( PAGE.WP_ADMIN_POSTS );
-		const post = postsList.viewPostWithTitle( postTitle );
-
-		return post.postComment( comment );
-	}
-
 	_setPost( page, post ) {
 		// TODO(gedex): set content, status, etc.
 
@@ -71,6 +64,63 @@ export default class UserFlow {
 		if ( post.status ) {
 			page.selectStatus( post.status );
 		}
+	}
+
+	createCategory( category ) {
+		category = Object.assign( { name: '' }, category );
+
+		const categoriesPage = this.open( PAGE.WP_ADMIN_CATEGORIES );
+		this._setCategory( categoriesPage, category );
+
+		return categoriesPage.add();
+	}
+
+	_setCategory( page, category ) {
+		if ( category.name ) {
+			page.setName( category.name );
+		}
+
+		if ( category.slug ) {
+			page.setSlug( category.slug );
+		}
+
+		if ( category.parent ) {
+			page.selectParent( category.parent );
+		}
+
+		if ( category.description ) {
+			page.setDescription( category.description );
+		}
+	}
+
+	createTag( tag ) {
+		tag = Object.assign( { name: '' }, tag );
+
+		const tagsPage = this.open( PAGE.WP_ADMIN_TAGS );
+		this._setTag( tagsPage, tag );
+
+		return tagsPage.add();
+	}
+
+	_setTag( page, tag ) {
+		if ( tag.name ) {
+			page.setName( tag.name );
+		}
+
+		if ( tag.slug ) {
+			page.setSlug( tag.slug );
+		}
+
+		if ( tag.description ) {
+			page.setDescription( tag.description );
+		}
+	}
+
+	addComment( postTitle, comment ) {
+		const postsList = this.open( PAGE.WP_ADMIN_POSTS );
+		const post = postsList.viewPostWithTitle( postTitle );
+
+		return post.postComment( comment );
 	}
 
 	logout() {

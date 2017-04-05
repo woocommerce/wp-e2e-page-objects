@@ -36,6 +36,7 @@ const testPosts = [
 
 let manager;
 let driver;
+let user;
 
 test.describe( 'UserFlow', function() {
 	test.before( 'open browser', function() {
@@ -47,10 +48,12 @@ test.describe( 'UserFlow', function() {
 
 	this.timeout( config.get( 'mochaTimeoutMs' ) );
 
-	test.it( 'allows to open any /wp-admin/ page and returns its page object', () => {
-		const userFlow = new UserFlow( driver, flowArgs );
+	test.before( 'log in', () => {
+		user = new UserFlow( driver, flowArgs );
+	} );
 
-		const settingsPage = userFlow.open( PAGE.WP_ADMIN_SETTINGS_GENERAL );
+	test.it( 'allows to open any /wp-admin/ page and returns its page object', () => {
+		const settingsPage = user.open( PAGE.WP_ADMIN_SETTINGS_GENERAL );
 		settingsPage.checkMembership();
 		settingsPage.saveChanges();
 
@@ -58,7 +61,6 @@ test.describe( 'UserFlow', function() {
 	} );
 
 	test.it( 'allows to create post', () => {
-		const user = new UserFlow( driver, flowArgs );
 		testPosts.forEach( post => {
 			user.createPost( post );
 		} );
@@ -75,8 +77,7 @@ test.describe( 'UserFlow', function() {
 	} );
 
 	test.it( 'allows to log the user out from /wp-admin/', () => {
-		const userFlow = new UserFlow( driver, flowArgs );
-		assert.eventually.ok( userFlow.logout() );
+		assert.eventually.ok( user.logout() );
 	} );
 
 	test.after( 'quit browser', () => {
