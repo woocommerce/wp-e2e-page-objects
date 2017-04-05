@@ -31,8 +31,9 @@ const testPost = {
 
 let manager;
 let driver;
+let user;
 
-test.describe( 'SinglePage', function() {
+test.describe.only( 'SinglePage', function() {
 	test.before( 'open browser', function() {
 		this.timeout( startBrowserTimeout );
 
@@ -43,14 +44,12 @@ test.describe( 'SinglePage', function() {
 	this.timeout( config.get( 'mochaTimeoutMs' ) );
 
 	test.before( 'create post', () => {
-		const user = new UserFlow( driver, userFlowArgs );
+		user = new UserFlow( driver, userFlowArgs );
 		user.createPost( testPost );
 	} );
 
 	test.it( 'allows you to comment as logged-in user', () => {
-		const user = new UserFlow( driver, userFlowArgs );
 		const comment = 'Test comment ' + new Date().getTime();
-
 		assert.eventually.ok( user.addComment( testPost.title, comment ) );
 
 		const postsList = user.open( PAGE.WP_ADMIN_POSTS );
