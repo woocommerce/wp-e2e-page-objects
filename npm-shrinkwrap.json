@@ -1,6 +1,6 @@
 {
   "name": "wp-e2e-page-objects",
-  "version": "0.5.4",
+  "version": "0.6.0",
   "dependencies": {
     "abbrev": {
       "version": "1.0.9",
@@ -866,6 +866,11 @@
       "from": "del@>=2.0.2 <3.0.0",
       "resolved": "https://registry.npmjs.org/del/-/del-2.2.2.tgz",
       "dev": true
+    },
+    "deprecate": {
+      "version": "1.0.0",
+      "from": "deprecate@latest",
+      "resolved": "https://registry.npmjs.org/deprecate/-/deprecate-1.0.0.tgz"
     },
     "detect-indent": {
       "version": "4.0.0",

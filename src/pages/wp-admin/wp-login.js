@@ -22,9 +22,9 @@ export default class WPLogin extends Page {
 	}
 
 	login( username, password ) {
-		this.components.loginForm.fillUsername( username );
-		this.components.loginForm.fillPassword( password );
-		this.components.loginForm.submit();
+		this.components.loginForm.setUsername( username );
+		this.components.loginForm.setPassword( password );
+		this.components.loginForm.login();
 
 		return new WPAdminDashboard( this.driver, { visit: false } );
 	}

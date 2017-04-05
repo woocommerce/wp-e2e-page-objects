@@ -33,12 +33,10 @@ export default class WPAdminSettingsGeneral extends WPAdminSettings {
 	}
 
 	checkMembership() {
-		helper.unsetCheckbox( this.driver, MEMBERSHIP_SELECTOR );
 		return helper.setCheckbox( this.driver, MEMBERSHIP_SELECTOR );
 	}
 
 	uncheckMembership() {
-		helper.setCheckbox( this.driver, MEMBERSHIP_SELECTOR );
 		return helper.unsetCheckbox( this.driver, MEMBERSHIP_SELECTOR );
 	}
 }

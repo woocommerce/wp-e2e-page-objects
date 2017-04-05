@@ -10,12 +10,14 @@ import { sprintf } from 'sprintf-js';
 import FrontPage from './pages/front-page';
 import WPAdmin from './pages/wp-admin/wp-admin';
 import WPAdminDashboard from './pages/wp-admin/wp-admin-dashboard';
+import WPAdminCategories from './pages/wp-admin/wp-admin-categories';
 import WPAdminPluginInstall from './pages/wp-admin/wp-admin-plugin-install';
 import WPAdminPlugins from './pages/wp-admin/wp-admin-plugins';
 import WPAdminPostEdit from './pages/wp-admin/wp-admin-post-edit';
 import WPAdminPostNew from './pages/wp-admin/wp-admin-post-new';
 import WPAdminPosts from './pages/wp-admin/wp-admin-posts';
 import WPAdminSettingsGeneral from './pages/wp-admin/wp-admin-settings-general';
+import WPAdminTags from './pages/wp-admin/wp-admin-tags';
 import WPLogin from './pages/wp-admin/wp-login';
 
 export const PAGE = {
@@ -48,11 +50,11 @@ export const PAGE = {
 		path: '/wp-admin/post.php?post=%s&action=edit'
 	},
 	WP_ADMIN_CATEGORIES: {
-		object: null, // TODO: Implement me!
+		object: WPAdminCategories,
 		path: '/wp-admin/edit-tags.php?taxonomy=category'
 	},
 	WP_ADMIN_TAGS: {
-		object: null, // TODO: Implement me!
+		object: WPAdminTags,
 		path: '/wp-admin/edit-tags.php?taxonomy=post_tag'
 	},
 	WP_ADMIN_PAGES: {
