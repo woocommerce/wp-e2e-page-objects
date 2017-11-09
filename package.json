@@ -39,7 +39,7 @@
   "dependencies": {
     "deprecate": "^1.0.0",
     "lodash": "^4.13.1",
-    "selenium-webdriver": "^2.53.3",
+    "selenium-webdriver": "^3.6.0",
     "sprintf-js": "^1.0.3",
     "wp-e2e-webdriver": "^0.13.0"
   },
