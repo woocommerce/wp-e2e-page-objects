@@ -24,7 +24,8 @@ let driver;
 let dashboardPage;
 
 test.describe( 'WPLogin', function() {
-	test.before( 'open browser', function() {
+	// open browser
+	test.before( function() {
 		this.timeout( config.get( 'startBrowserTimeoutMs' ) );
 
 		manager = new WebDriverManager( 'chrome' );
@@ -33,7 +34,8 @@ test.describe( 'WPLogin', function() {
 
 	this.timeout( config.get( 'mochaTimeoutMs' ) );
 
-	test.before( 'clear cookies and localStorage', () => {
+	// clear cookies and localStorage
+	test.before( () => {
 		helper.clearCookiesAndDeleteLocalStorage( driver );
 	} );
 
@@ -59,7 +61,8 @@ test.describe( 'WPLogin', function() {
 		} );
 	} );
 
-	test.after( 'quit browser', () => {
+	// quit browser
+	test.after( () => {
 		manager.quitBrowser();
 	} );
 } );

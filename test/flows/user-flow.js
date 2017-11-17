@@ -39,7 +39,8 @@ let driver;
 let user;
 
 test.describe( 'UserFlow', function() {
-	test.before( 'open browser', function() {
+	// open browser
+	test.before( function() {
 		this.timeout( config.get( 'startBrowserTimeoutMs' ) );
 
 		manager = new WebDriverManager( 'chrome', { baseUrl: config.get( 'url' ) } );
@@ -48,7 +49,8 @@ test.describe( 'UserFlow', function() {
 
 	this.timeout( config.get( 'mochaTimeoutMs' ) );
 
-	test.before( 'log in', () => {
+	// log in
+	test.before( () => {
 		user = new UserFlow( driver, flowArgs );
 	} );
 
@@ -80,7 +82,8 @@ test.describe( 'UserFlow', function() {
 		assert.eventually.ok( user.logout() );
 	} );
 
-	test.after( 'quit browser', () => {
+	// quit browser
+	test.after( () => {
 		manager.quitBrowser();
 	} );
 } );

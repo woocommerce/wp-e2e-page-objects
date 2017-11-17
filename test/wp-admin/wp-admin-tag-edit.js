@@ -33,7 +33,8 @@ let driver;
 let user;
 
 test.describe( 'WPAdminTagEdit', function() {
-	test.before( 'open browser', function() {
+	// open browser
+	test.before( function() {
 		this.timeout( config.get( 'startBrowserTimeoutMs' ) );
 
 		manager = new WebDriverManager( 'chrome', { baseUrl: config.get( 'url' ) } );
@@ -42,7 +43,8 @@ test.describe( 'WPAdminTagEdit', function() {
 
 	this.timeout( config.get( 'mochaTimeoutMs' ) );
 
-	test.before( 'create tags', () => {
+	// create tags
+	test.before( () => {
 		user = new UserFlow( driver, userFlowArgs );
 
 		testTags.forEach( tag => {
@@ -72,7 +74,8 @@ test.describe( 'WPAdminTagEdit', function() {
 		} );
 	} );
 
-	test.after( 'delete tags and quit browser', () => {
+	// delete tags and quit browser
+	test.after( () => {
 		testTags.forEach( tag => {
 			const tagsList = user.open( PAGE.WP_ADMIN_TAGS );
 			tagsList.deleteTagWithName( tag.name );

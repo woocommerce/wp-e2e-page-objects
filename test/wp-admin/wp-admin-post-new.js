@@ -24,7 +24,8 @@ let driver;
 let page;
 
 test.describe( 'WPAdminPostNew', function() {
-	test.before( 'open browser', function() {
+	// open browser
+	test.before( function() {
 		this.timeout( config.get( 'startBrowserTimeoutMs' ) );
 
 		manager = new WebDriverManager( 'chrome' );
@@ -33,7 +34,8 @@ test.describe( 'WPAdminPostNew', function() {
 
 	this.timeout( config.get( 'mochaTimeoutMs' ) );
 
-	test.before( 'login and goes to new post page', () => {
+	// login and goes to new post page
+	test.before( () => {
 		helper.clearCookiesAndDeleteLocalStorage( driver );
 
 		const wpLogin = new WPLogin( driver, { url: getPageUrl( config.get( 'url' ), PAGE.WP_LOGIN ) } );
@@ -55,7 +57,8 @@ test.describe( 'WPAdminPostNew', function() {
 		assert.eventually.equal( page.publish(), true );
 	} );
 
-	test.after( 'quit browser', () => {
+	// quit browser
+	test.after( () => {
 		manager.quitBrowser();
 	} );
 } );

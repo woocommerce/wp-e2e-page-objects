@@ -33,7 +33,8 @@ let driver;
 let user;
 
 test.describe( 'WPAdminCategoryEdit', function() {
-	test.before( 'open browser', function() {
+	// open browser
+	test.before( function() {
 		this.timeout( config.get( 'startBrowserTimeoutMs' ) );
 
 		manager = new WebDriverManager( 'chrome', { baseUrl: config.get( 'url' ) } );
@@ -42,7 +43,8 @@ test.describe( 'WPAdminCategoryEdit', function() {
 
 	this.timeout( config.get( 'mochaTimeoutMs' ) );
 
-	test.before( 'create categories', () => {
+	// create categories
+	test.before( () => {
 		user = new UserFlow( driver, userFlowArgs );
 
 		testCategories.forEach( category => {
@@ -74,7 +76,8 @@ test.describe( 'WPAdminCategoryEdit', function() {
 		} );
 	} );
 
-	test.after( 'delete categories and quit browser', () => {
+	// delete categories and quit browser
+	test.after( () => {
 		testCategories.forEach( category => {
 			const categoriesList = user.open( PAGE.WP_ADMIN_CATEGORIES );
 			categoriesList.deleteCategoryWithName( category.name );

@@ -33,7 +33,8 @@ let driver;
 let user;
 
 test.describe( 'WPAdminPosts', function() {
-	test.before( 'open browser', function() {
+	// open browser
+	test.before( function() {
 		this.timeout( config.get( 'startBrowserTimeoutMs' ) );
 
 		manager = new WebDriverManager( 'chrome', { baseUrl: config.get( 'url' ) } );
@@ -42,7 +43,8 @@ test.describe( 'WPAdminPosts', function() {
 
 	this.timeout( config.get( 'mochaTimeoutMs' ) );
 
-	test.before( 'create posts', () => {
+	// create posts
+	test.before( () => {
 		user = new UserFlow( driver, userFlowArgs );
 
 		testPosts.forEach( post => {
@@ -76,7 +78,8 @@ test.describe( 'WPAdminPosts', function() {
 		} );
 	} );
 
-	test.after( 'quit browser', () => {
+	// quit browser
+	test.after( () => {
 		manager.quitBrowser();
 	} );
 } );

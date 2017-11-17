@@ -23,7 +23,8 @@ let manager;
 let driver;
 
 test.describe( 'WPAdmin', function() {
-	test.before( 'open browser', function() {
+	// open browser
+	test.before( function() {
 		this.timeout( config.get( 'startBrowserTimeoutMs' ) );
 
 		manager = new WebDriverManager( 'chrome' );
@@ -32,7 +33,8 @@ test.describe( 'WPAdmin', function() {
 
 	this.timeout( config.get( 'mochaTimeoutMs' ) );
 
-	test.before( 'login as admin', () => {
+	// login as admin
+	test.before( () => {
 		helper.clearCookiesAndDeleteLocalStorage( driver );
 
 		const url = getPageUrl( config.get( 'url' ), PAGE.WP_LOGIN );
@@ -328,7 +330,8 @@ test.describe( 'WPAdmin', function() {
 		);
 	} );
 
-	test.after( 'quit browser', () => {
+	// quit browser
+	test.after( () => {
 		manager.quitBrowser();
 	} );
 } );

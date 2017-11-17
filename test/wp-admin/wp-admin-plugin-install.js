@@ -24,7 +24,8 @@ let driver;
 let page;
 
 test.describe( 'WPAdminPluginInstall', function() {
-	test.before( 'open browser', function() {
+	// open browser
+	test.before( function() {
 		this.timeout( config.get( 'startBrowserTimeoutMs' ) );
 
 		manager = new WebDriverManager( 'chrome' );
@@ -33,7 +34,8 @@ test.describe( 'WPAdminPluginInstall', function() {
 
 	this.timeout( config.get( 'mochaTimeoutMs' ) );
 
-	test.before( 'login and goes to install plugin page', () => {
+	// login and goes to install plugin page
+	test.before( () => {
 		helper.clearCookiesAndDeleteLocalStorage( driver );
 
 		const wpLoginArgs = { url: getPageUrl( config.get( 'url' ), PAGE.WP_LOGIN ) };
@@ -69,7 +71,8 @@ test.describe( 'WPAdminPluginInstall', function() {
 		);
 	} );
 
-	test.after( 'deactivate and delete plugin "woocommerce" then quit browser', () => {
+	// deactivate and delete plugin "woocommerce" then quit browser
+	test.after( () => {
 		const pageArgs = { url: getPageUrl( config.get( 'url' ), PAGE.WP_ADMIN_PLUGINS ) };
 		const pagePlugins = new WPAdminPlugins( driver, pageArgs );
 		pagePlugins.deactivate( 'woocommerce' );

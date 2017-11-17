@@ -34,7 +34,8 @@ let driver;
 let user;
 
 test.describe( 'SinglePage', function() {
-	test.before( 'open browser', function() {
+	// open browser
+	test.before( function() {
 		this.timeout( startBrowserTimeout );
 
 		manager = new WebDriverManager( 'chrome', { baseUrl: config.get( 'url' ) } );
@@ -43,7 +44,8 @@ test.describe( 'SinglePage', function() {
 
 	this.timeout( config.get( 'mochaTimeoutMs' ) );
 
-	test.before( 'create post', () => {
+	// create post
+	test.before( () => {
 		user = new UserFlow( driver, userFlowArgs );
 		user.createPost( testPost );
 	} );
@@ -58,7 +60,8 @@ test.describe( 'SinglePage', function() {
 		assert.eventually.ok( page.hasText( comment ) );
 	} );
 
-	test.after( 'quit browser', () => {
+	// quit browser
+	test.after( () => {
 		manager.quitBrowser();
 	} );
 } );
