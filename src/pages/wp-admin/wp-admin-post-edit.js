@@ -10,7 +10,7 @@ import { WebDriverHelper as helper } from 'wp-e2e-webdriver';
 import WPAdmin from './wp-admin';
 import ComponentMetaBoxCategories from '../../components/wp-admin/component-meta-box-categories';
 import ComponentMetaBoxFormat from '../../components/wp-admin/component-meta-box-publish';
-import ComponentMetaBoxPublish from '../../components/wp-admin/component-meta-box-publish';
+import ComponentMetaBoxPublish from '../../components/wp-admin/component-meta-box-publish'; // eslint-disable-line no-duplicate-imports
 
 const TITLE_SELECTOR = By.css( '#title' );
 
