@@ -56,7 +56,7 @@ test.describe( 'WPAdmin', function() {
 			'Plugins',
 			'Users',
 			'Tools',
-			'Settings'
+			'Settings',
 		];
 
 		menus.forEach( ( menu ) => {
@@ -76,7 +76,7 @@ test.describe( 'WPAdmin', function() {
 			[ 'Plugins', 'Plugins' ],
 			[ 'Users', 'Users' ],
 			[ 'Tools', 'Tools' ],
-			[ 'Settings', 'General Settings' ]
+			[ 'Settings', 'General Settings' ],
 		];
 
 		menuMapsToTitle.forEach( ( menuWithTitle ) => {
@@ -125,42 +125,42 @@ test.describe( 'WPAdmin', function() {
 		const submenuMapsToTitle = [
 			[ 'Dashboard', [
 				[ 'Home', 'Dashboard' ],
-				[ 'Updates', 'WordPress Updates' ]
+				[ 'Updates', 'WordPress Updates' ],
 			] ],
 			[ 'Posts', [
 				[ 'All Posts', 'Posts' ],
 				[ 'Add New', 'Add New Post' ],
 				[ 'Categories', 'Categories' ],
-				[ 'Tags', 'Tags' ]
+				[ 'Tags', 'Tags' ],
 			] ],
 			[ 'Media', [
 				[ 'Library', 'Media Library' ],
-				[ 'Add New', 'Upload New Media' ]
+				[ 'Add New', 'Upload New Media' ],
 			] ],
 			[ 'Pages', [
 				[ 'All Pages', 'Pages' ],
-				[ 'Add New', 'Add New Page' ]
+				[ 'Add New', 'Add New Page' ],
 			] ],
 			[ 'Appearance', [
 				[ 'Themes', 'Manage Themes' ],
 				[ 'Widgets', 'Widgets' ],
 				[ 'Menus', 'Menus' ],
-				[ 'Editor', 'Edit Themes' ]
+				[ 'Editor', 'Edit Themes' ],
 			] ],
 			[ 'Plugins', [
 				[ 'Installed Plugins', 'Plugins' ],
 				[ 'Add New', 'Add Plugins' ],
-				[ 'Editor', 'Edit Plugins' ]
+				[ 'Editor', 'Edit Plugins' ],
 			] ],
 			[ 'Users', [
 				[ 'All Users', 'Users' ],
 				[ 'Add New', 'Add New User' ],
-				[ 'Your Profile', 'Profile' ]
+				[ 'Your Profile', 'Profile' ],
 			] ],
 			[ 'Tools', [
 				[ 'Available Tools', 'Tools' ],
 				[ 'Import', 'Import' ],
-				[ 'Export', 'Export' ]
+				[ 'Export', 'Export' ],
 			] ],
 			[ 'Settings', [
 				[ 'General', 'General Settings' ],
@@ -168,8 +168,8 @@ test.describe( 'WPAdmin', function() {
 				[ 'Reading', 'Reading Settings' ],
 				[ 'Discussion', 'Discussion Settings' ],
 				[ 'Media', 'Media Settings' ],
-				[ 'Permalinks', 'Permalink Settings' ]
-			] ]
+				[ 'Permalinks', 'Permalink Settings' ],
+			] ],
 		];
 
 		submenuMapsToTitle.forEach( ( menuWithSubmenus ) => {
@@ -204,7 +204,7 @@ test.describe( 'WPAdmin', function() {
 			[ 'About WordPress', 'About' ],
 			[ config.get( 'siteTitle' ), config.get( 'siteTitle' ) ],
 			[ 'awaiting moderation', 'Comments' ],
-			[ 'New', 'Add New Post' ]
+			[ 'New', 'Add New Post' ],
 		];
 
 		quickLinkMapsToTitle.forEach( ( menu ) => {
@@ -225,7 +225,7 @@ test.describe( 'WPAdmin', function() {
 		const quickLinks = [
 			[ 'About WordPress', [ 'About WordPress', 'WordPress.org', 'Documentation', 'Support Forums', 'Feedback' ] ],
 			[ config.get( 'siteTitle' ), [ 'Visit Site' ] ],
-			[ 'New', [ 'Post', 'Media', 'Page', 'User' ] ]
+			[ 'New', [ 'Post', 'Media', 'Page', 'User' ] ],
 		];
 
 		quickLinks.forEach( ( quickLinkWithSubmenus ) => {
@@ -245,17 +245,17 @@ test.describe( 'WPAdmin', function() {
 		const wpAdmin = new WPAdmin( driver, { visit: false } );
 		const submenuMapsToTitle = [
 			[ 'About WordPress', [
-				[ 'About WordPress', 'About' ]
+				[ 'About WordPress', 'About' ],
 			] ],
 			[ config.get( 'siteTitle' ), [
-				[ 'Visit Site', config.get( 'siteTitle' ) ]
+				[ 'Visit Site', config.get( 'siteTitle' ) ],
 			] ],
 			[ 'New', [
 				[ 'Post', 'Add New Post' ],
 				[ 'Media', 'Upload New Media' ],
 				[ 'Page', 'Add New Page' ],
-				[ 'User', 'Add New User' ]
-			] ]
+				[ 'User', 'Add New User' ],
+			] ],
 		];
 
 		submenuMapsToTitle.forEach( ( menuWithSubmenus ) => {

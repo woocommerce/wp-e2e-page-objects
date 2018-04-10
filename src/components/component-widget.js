@@ -9,7 +9,7 @@ import { By } from 'selenium-webdriver';
 import Component from './component';
 
 const defaultArgs = {
-	titleSelector: By.css( '.widget-title' )
+	titleSelector: By.css( '.widget-title' ),
 };
 
 export default class ComponentWidget extends Component {

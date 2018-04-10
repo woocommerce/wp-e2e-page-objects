@@ -8,7 +8,7 @@ const defaultArgs = {
 	url: '/',
 	visit: true,
 	waitMs: 10000,
-	components: {}
+	components: {},
 };
 
 export default class Page {

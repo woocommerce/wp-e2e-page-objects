@@ -24,7 +24,7 @@ export default class UserFlow {
 		const PageObject = page.object;
 		const pageArgs = {
 			url: getPageUrl( this.baseUrl, page, ...args ),
-			visit: true
+			visit: true,
 		};
 
 		this.currentPage = new PageObject( this.driver, pageArgs );

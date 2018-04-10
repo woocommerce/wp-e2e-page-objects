@@ -5,7 +5,7 @@ import Page from './page';
 
 const defaultArgs = {
 	url: '/',
-	visit: true
+	visit: true,
 };
 
 export default class CategoryPage extends Page {

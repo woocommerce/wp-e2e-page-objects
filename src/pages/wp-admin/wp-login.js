@@ -6,13 +6,13 @@ import WPAdminDashboard from './wp-admin-dashboard';
 import ComponentLoginForm from '../../components/wp-admin/component-login-form';
 
 const components = {
-	loginForm: ComponentLoginForm
+	loginForm: ComponentLoginForm,
 };
 
 const defaultArgs = {
 	url: '',
 	visit: true,
-	components: components
+	components: components,
 };
 
 export default class WPLogin extends Page {

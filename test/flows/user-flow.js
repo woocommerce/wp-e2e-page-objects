@@ -21,17 +21,17 @@ const PAGE = PageMap.PAGE;
 const flowArgs = {
 	baseUrl: config.get( 'url' ),
 	username: config.get( 'users.admin.username' ),
-	password: config.get( 'users.admin.password' )
+	password: config.get( 'users.admin.password' ),
 };
 const testPosts = [
 	{
 		title: 'Test post ' + new Date().getTime() + ' #1',
-		status: 'Published'
+		status: 'Published',
 	},
 	{
 		title: 'Test post ' + new Date().getTime() + ' #2',
-		status: 'Pending Review'
-	}
+		status: 'Pending Review',
+	},
 ];
 
 let manager;

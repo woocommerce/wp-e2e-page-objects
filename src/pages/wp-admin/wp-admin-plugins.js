@@ -14,13 +14,13 @@ import ComponentPluginsList from '../../components/wp-admin/component-plugins-li
 const ADD_NEW_SELECTOR = By.css( 'h1 .page-title-action' );
 
 const components = {
-	pluginsList: ComponentPluginsList
+	pluginsList: ComponentPluginsList,
 };
 
 const defaultArgs = {
 	url: '',
 	visit: true,
-	components: components
+	components: components,
 };
 
 export default class WPAdminPlugins extends WPAdmin {

@@ -21,7 +21,7 @@ export default class WPAdminPostEdit extends WPAdmin {
 			{
 				metaBoxCategories: ComponentMetaBoxCategories,
 				metaBoxFormat: ComponentMetaBoxFormat,
-				metaBoxPublish: ComponentMetaBoxPublish
+				metaBoxPublish: ComponentMetaBoxPublish,
 			},
 			args.components
 		);

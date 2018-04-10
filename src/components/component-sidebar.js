@@ -15,7 +15,7 @@ const SIDEBAR_SELECTOR = By.css( '.widget-area' );
 
 const SIDEBAR_WIDGETS = {
 	recentPosts: ComponentWidgetRecentPosts,
-	recentComments: ComponentWidgetRecentComments
+	recentComments: ComponentWidgetRecentComments,
 };
 
 export default class ComponentSidebar extends Component {

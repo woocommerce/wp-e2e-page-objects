@@ -5,13 +5,13 @@ import WPAdmin from './wp-admin';
 import ComponentWelcomePanel from '../../components/wp-admin/component-welcome-panel';
 
 const components = {
-	welcomePanel: ComponentWelcomePanel
+	welcomePanel: ComponentWelcomePanel,
 };
 
 const defaultArgs = {
 	url: '',
 	visit: true,
-	components: components
+	components: components,
 };
 
 export default class WPAdminDashboard extends WPAdmin {
