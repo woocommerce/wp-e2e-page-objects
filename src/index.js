@@ -96,5 +96,5 @@ export {
 	WPAdminTagEdit,
 	WPLogin,
 	UserFlow,
-	VisitorFlow
+	VisitorFlow,
 };

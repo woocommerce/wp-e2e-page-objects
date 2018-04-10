@@ -23,10 +23,10 @@ const PAGE = PageMap.PAGE;
 const userFlowArgs = {
 	baseUrl: config.get( 'url' ),
 	username: config.get( 'users.admin.username' ),
-	password: config.get( 'users.admin.password' )
+	password: config.get( 'users.admin.password' ),
 };
 const testPost = {
-	title: 'Test post ' + new Date().getTime()
+	title: 'Test post ' + new Date().getTime(),
 };
 
 let manager;

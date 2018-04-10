@@ -5,13 +5,13 @@ import ComponentPostTermFormEdit from '../../components/wp-admin/component-post-
 import WPAdmin from './wp-admin';
 
 const components = {
-	form: ComponentPostTermFormEdit
+	form: ComponentPostTermFormEdit,
 };
 
 const defaultArgs = {
 	url: '',
 	visit: true,
-	components: components
+	components: components,
 };
 
 export default class WPAdminPostTermEdit extends WPAdmin {

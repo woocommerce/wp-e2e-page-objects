@@ -10,7 +10,7 @@ function _getDefaultComponents() {
 	return {
 		adminMenu: ComponentAdminMenu,
 		adminBar: ComponentAdminBar,
-		adminNotice: ComponentAdminNotice
+		adminNotice: ComponentAdminNotice,
 	};
 }
 

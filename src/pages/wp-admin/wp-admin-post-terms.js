@@ -9,13 +9,13 @@ import WPAdminPostTermEdit from './wp-admin-post-term-edit';
 
 const components = {
 	termsList: ComponentPostTermsList,
-	form: ComponentPostTermFormNew
+	form: ComponentPostTermFormNew,
 };
 
 const defaultArgs = {
 	url: '',
 	visit: true,
-	components: components
+	components: components,
 };
 
 export default class WPAdminPostTerms extends WPAdmin {

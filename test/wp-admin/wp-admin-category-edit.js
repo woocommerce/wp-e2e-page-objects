@@ -21,7 +21,7 @@ const PAGE = PageMap.PAGE;
 const userFlowArgs = {
 	baseUrl: config.get( 'url' ),
 	username: config.get( 'users.admin.username' ),
-	password: config.get( 'users.admin.password' )
+	password: config.get( 'users.admin.password' ),
 };
 const testCategories = [
 	{ name: 'Category ' + new Date().getTime() + ' #1' },

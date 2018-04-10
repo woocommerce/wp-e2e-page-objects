@@ -11,8 +11,8 @@ export default class SinglePage extends Page {
 				url: '/',
 				visit: true,
 				components: {
-					comment: ComponentComment
-				}
+					comment: ComponentComment,
+				},
 			},
 			args
 		);
@@ -22,7 +22,7 @@ export default class SinglePage extends Page {
 	postComment( comment, args = {} ) {
 		args = Object.assign(
 			{
-				comment: comment
+				comment: comment,
 			},
 			args
 		);

@@ -7,13 +7,13 @@ import WPAdmin from './wp-admin';
 import WPAdminPostEdit from './wp-admin-post-edit';
 
 const components = {
-	postsList: ComponentPostsList
+	postsList: ComponentPostsList,
 };
 
 const defaultArgs = {
 	url: '',
 	visit: true,
-	components: components
+	components: components,
 };
 
 export default class WPAdminPosts extends WPAdmin {

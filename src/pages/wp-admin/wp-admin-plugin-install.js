@@ -6,13 +6,13 @@ import ComponentPluginCard from '../../components/wp-admin/component-plugin-card
 import WPAdmin from './wp-admin';
 
 const components = {
-	filter: ComponentPluginInstallFilter
+	filter: ComponentPluginInstallFilter,
 };
 
 const defaultArgs = {
 	url: '',
 	visit: true,
-	components: components
+	components: components,
 };
 
 export default class WPAdminPluginInstall extends WPAdmin {

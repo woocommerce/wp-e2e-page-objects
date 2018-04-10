@@ -21,11 +21,11 @@ const PAGE = PageMap.PAGE;
 const userFlowArgs = {
 	baseUrl: config.get( 'url' ),
 	username: config.get( 'users.admin.username' ),
-	password: config.get( 'users.admin.password' )
+	password: config.get( 'users.admin.password' ),
 };
 const testTags = [
 	{ name: 'Tag ' + new Date().getTime() + ' #1' },
-	{ name: 'Tag ' + new Date().getTime() + ' #2' }
+	{ name: 'Tag ' + new Date().getTime() + ' #2' },
 ];
 
 let manager;
