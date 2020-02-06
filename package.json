@@ -41,7 +41,7 @@
     "lodash": "^4.13.1",
     "selenium-webdriver": "^3.6.0",
     "sprintf-js": "^1.0.3",
-    "wp-e2e-webdriver": "^0.14.0"
+    "wp-e2e-webdriver": "^0.16.0"
   },
   "devDependencies": {
     "babel": "^6.5.2",
