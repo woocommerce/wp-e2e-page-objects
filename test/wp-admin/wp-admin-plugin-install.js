@@ -75,11 +75,22 @@ test.describe( 'WPAdminPluginInstall', function() {
 	test.after( () => {
 		const pageArgs = { url: getPageUrl( config.get( 'url' ), PAGE.WP_ADMIN_PLUGINS ) };
 		const pagePlugins = new WPAdminPlugins( driver, pageArgs );
-		pagePlugins.deactivate( 'woocommerce' );
 
-		driver.wait( () => {
-			return pagePlugins.delete( 'woocommerce' );
-		}, 10000, 'Time out waiting plugin deletion' );
+		test.it( 'can deactivate new installed plugin "woocommerce"', () => {
+			return assert.eventually.equal(
+				pagePlugins.deactivate( 'woocommerce' ),
+				true
+			);
+		} );
+
+		test.after( () => {
+			test.it( 'can delete new installed plugin "woocommerce"', () => {
+				return assert.eventually.equal(
+					page.delete( 'woocommerce' ),
+					true
+				);
+			} );
+		} );
 
 		manager.quitBrowser();
 	} );

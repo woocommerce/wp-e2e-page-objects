@@ -35,24 +35,22 @@ export default class ComponentPluginsList extends Component {
 		const actionSelector = By.css( cssSelector );
 		const self = this;
 
-		return this.driver.isElementPresent( actionSelector ).
-			then( ( located ) => {
-				if ( true === located ) {
-					switch ( action ) {
-						case 'activate':
-						case 'deactivate':
-							helper.clickWhenClickable( self.driver, actionSelector );
-							return helper.clickWhenClickable( self.driver, MESSAGE_DISMISS_SELECTOR );
-						case 'delete':
-							helper.clickWhenClickable( self.driver, actionSelector );
+		return this.driver.findElement( actionSelector ).
+			then( () => {
+				switch ( action ) {
+					case 'activate':
+					case 'deactivate':
+						helper.clickWhenClickable( self.driver, actionSelector );
+						return helper.clickWhenClickable( self.driver, MESSAGE_DISMISS_SELECTOR );
+					case 'delete':
+						helper.clickWhenClickable( self.driver, actionSelector );
 
-							// Delete plugin triggers popup.
-							self.driver.switchTo().alert().accept();
+						// Delete plugin triggers popup.
+						self.driver.switchTo().alert().accept();
 
-							return helper.isEventuallyPresentAndDisplayed( self.driver, PLUGIN_DELETED_SELECTOR );
-					}
+						return helper.isEventuallyPresentAndDisplayed( self.driver, PLUGIN_DELETED_SELECTOR );
 				}
-			} );
+			}, () =>  false );
 	}
 
 	getPluginActionCssSelector( pluginSlug, action = 'activate' ) {
