@@ -45,7 +45,7 @@ test.describe( 'Page', function() {
 
 		assert.eventually.equal(
 			actual,
-			expect,
+			expect
 		);
 	} );
 
