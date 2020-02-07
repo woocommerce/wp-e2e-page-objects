@@ -15,6 +15,7 @@ const SLUG_SELECTOR = By.css( '#slug' );
 const PARENT_SELECTOR = By.css( '#parent' );
 const DESCRIPTION_SELECTOR = By.css( '#description' );
 const SUBMIT_SELECTOR = By.css( '#submit' );
+const UPDATE_SELECTOR = By.css( 'input[type=submit]' );
 
 export default class ComponentPostTermFormEdit extends Component {
 	constructor( driver, selector = FORM_SELECTOR ) {
@@ -44,5 +45,10 @@ export default class ComponentPostTermFormEdit extends Component {
 	submit() {
 		helper.mouseMoveTo( this.driver, SUBMIT_SELECTOR );
 		return helper.clickWhenClickable( this.driver, SUBMIT_SELECTOR );
+	}
+
+	update() {
+		helper.mouseMoveTo( this.driver, UPDATE_SELECTOR );
+		return helper.clickWhenClickable( this.driver, UPDATE_SELECTOR );
 	}
 }

@@ -37,6 +37,6 @@ export default class WPAdminPostTermEdit extends WPAdmin {
 	}
 
 	update() {
-		return this.components.form.submit();
+		return this.components.form.update();
 	}
 }
