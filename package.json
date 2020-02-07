@@ -5,7 +5,7 @@
   "main": "./lib/index.js",
   "scripts": {
     "clean": "rimraf lib",
-    "test": "cross-env NODE_CONFIG_DIR='./test/config' BABEL_ENV=commonjs mocha --compilers js:babel-register --recursive",
+    "test": "cross-env NODE_CONFIG_DIR='./test/config' BABEL_ENV=commonjs mocha --require babel-core/register --recursive",
     "test:single": "cross-env NODE_CONFIG_DIR='./test/config' BABEL_ENV=commonjs mocha --compilers js:babel-register",
     "cover": "cross-env BABEL_ENV=commonjs istanbul cover _mocha -- --compilers js:babel-register --recursive",
     "lint": "eslint src test",
@@ -62,7 +62,7 @@
     "eslint-plugin-react": "^7.7.0",
     "eslint-plugin-wpcalypso": "^4.0.1",
     "istanbul": "^1.0.0-alpha",
-    "mocha": "^5.0.5",
+    "mocha": "^7.0.1",
     "remove-trailing-slash": "^0.1.0",
     "rimraf": "^2.5.4"
   }
