@@ -223,7 +223,7 @@ test.describe( 'WPAdmin', function() {
 	test.it( 'has some quick links with submenus', () => {
 		const wpAdmin = new WPAdmin( driver, { visit: false } );
 		const quickLinks = [
-			[ 'About WordPress', [ 'About WordPress', 'WordPress.org', 'Documentation', 'Support Forums', 'Feedback' ] ],
+			[ 'About WordPress', [ 'About WordPress', 'WordPress.org', 'Documentation', 'Support', 'Feedback' ] ],
 			[ config.get( 'siteTitle' ), [ 'Visit Site' ] ],
 			[ 'New', [ 'Post', 'Media', 'Page', 'User' ] ],
 		];
