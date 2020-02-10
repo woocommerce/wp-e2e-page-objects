@@ -49,9 +49,13 @@ export default class UserFlow {
 		const newPostPage = this.open( PAGE.WP_ADMIN_NEW_POST );
 		this._setPost( newPostPage, post );
 
-		return post.status === 'Published'
-			? newPostPage.publish()
-			: newPostPage.save();
+		if ( post.status === 'Published' ) {
+			return newPostPage.publish();
+		} else if ( post.status === 'Draft' || post.status === 'Pending Review' ) {
+			return newPostPage.saveDraft();
+		}
+
+		return newPostPage.save();
 	}
 
 	_setPost( page, post ) {
@@ -61,8 +65,8 @@ export default class UserFlow {
 			page.setTitle( post.title );
 		}
 
-		if ( post.status ) {
-			page.selectStatus( post.status );
+		if ( post.status === 'Pending Review' ) {
+			page.setPendingReview();
 		}
 	}
 

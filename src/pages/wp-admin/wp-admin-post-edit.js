@@ -12,7 +12,7 @@ import ComponentMetaBoxCategories from '../../components/wp-admin/component-meta
 import ComponentMetaBoxFormat from '../../components/wp-admin/component-meta-box-publish';
 import ComponentMetaBoxPublish from '../../components/wp-admin/component-meta-box-publish'; // eslint-disable-line no-duplicate-imports
 
-const TITLE_SELECTOR = By.css( '#title' );
+const TITLE_SELECTOR = By.css( '.editor-post-title__input' );
 
 export default class WPAdminPostEdit extends WPAdmin {
 	constructor( driver, args = {} ) {
@@ -36,6 +36,10 @@ export default class WPAdminPostEdit extends WPAdmin {
 		return this.components.metaBoxPublish.save();
 	}
 
+	saveDraft() {
+		return this.components.metaBoxPublish.saveDraft();
+	}
+
 	moveToTrash() {
 		return this.components.metaBoxPublish.moveToTrash();
 	}
@@ -44,8 +48,8 @@ export default class WPAdminPostEdit extends WPAdmin {
 		return helper.setWhenSettable( this.driver, TITLE_SELECTOR, title );
 	}
 
-	selectStatus( status ) {
-		return this.components.metaBoxPublish.selectStatus( status );
+	setPendingReview( status ) {
+		return this.components.metaBoxPublish.setPendingReview( status );
 	}
 
 	hasStatus( status ) {

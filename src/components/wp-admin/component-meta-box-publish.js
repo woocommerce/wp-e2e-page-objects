@@ -10,12 +10,18 @@ import { WebDriverHelper as helper } from 'wp-e2e-webdriver';
 import ComponentMetaBox from './component-meta-box';
 
 const METABOX_SELECTOR = By.css( '#submitdiv' );
-const SAVE_SELECTOR = By.css( '#save-post' );
-const PUBLISH_SELECTOR = By.css( '#publish' );
-const EDIT_STATUS_SELECTOR = By.css( '.edit-post-status' );
-const STATUS_SELECTOR = By.css( '#post_status' );
-const SAVE_STATUS_SELECTOR = By.css( '.save-post-status' );
-const MOVE_TO_TRASH_SELECTOR = By.css( '.submitdelete' );
+const UPDATE_SELECTOR = By.css( '.editor-post-publish-button' );
+const PUBLISH_SELECTOR = By.css( '.editor-post-publish-panel__toggle' );
+const DRAFT_SELECTOR = By.css( '.editor-post-save-draft' );
+
+const PENDING_STATUS_SELECTOR = By.css( '#inspector-checkbox-control-1' );
+const MOVE_TO_TRASH_SELECTOR = By.css( '.editor-post-trash' );
+
+const STATUS_DRAFT_SELECTOR = By.xpath( '//span[contains(@class, "editor-post-saved-state") and contains(text(), "Saved")]' );
+const STATUS_UPDATED_SELECTOR = By.xpath( '//div[contains(@class, "editor-post-publish-panel__header-published") and contains(text(), "Published")]' );
+const STATUS_PUBLISHED_SELECTOR = By.xpath( '//button[contains(@class, "editor-post-publish-button") and contains(text(), "Update")]' );
+const STATUS_SCHEDULED_SELECTOR = By.xpath( '//button[contains(@class, "editor-post-publish-button") and contains(text(), "Schedule")]' );
+const STATUS_PENDING_SELECTOR = By.css( '#inspector-checkbox-control-1[checked]' );
 
 export default class ComponentMetaBoxPublish extends ComponentMetaBox {
 	constructor( driver ) {
@@ -24,24 +30,59 @@ export default class ComponentMetaBoxPublish extends ComponentMetaBox {
 
 	publish() {
 		helper.mouseMoveTo( this.driver, PUBLISH_SELECTOR );
-		return helper.clickWhenClickable( this.driver, PUBLISH_SELECTOR );
+		helper.clickWhenClickable( this.driver, PUBLISH_SELECTOR );
+
+		helper.isEventuallyPresentAndDisplayed(
+			this.driver,
+			UPDATE_SELECTOR
+		);
+
+		return this.save();
 	}
 
 	save() {
-		helper.mouseMoveTo( this.driver, SAVE_SELECTOR );
-		return helper.clickWhenClickable( this.driver, SAVE_SELECTOR );
+		helper.mouseMoveTo( this.driver, UPDATE_SELECTOR );
+		helper.clickWhenClickable( this.driver, UPDATE_SELECTOR );
+
+		return helper.isEventuallyPresentAndDisplayed(
+			this.driver,
+			STATUS_UPDATED_SELECTOR
+		);
 	}
 
-	selectStatus( status ) {
-		helper.mouseMoveTo( this.driver, EDIT_STATUS_SELECTOR );
-		helper.clickWhenClickable( this.driver, EDIT_STATUS_SELECTOR );
-		helper.selectOption( this.driver, STATUS_SELECTOR, status );
-		return helper.clickWhenClickable( this.driver, SAVE_STATUS_SELECTOR );
+	saveDraft() {
+		helper.mouseMoveTo( this.driver, DRAFT_SELECTOR );
+		helper.clickWhenClickable( this.driver, DRAFT_SELECTOR );
+
+		return helper.isEventuallyPresentAndDisplayed(
+			this.driver,
+			STATUS_DRAFT_SELECTOR
+		);
 	}
 
+	setPendingReview() {
+		helper.mouseMoveTo( this.driver, PENDING_STATUS_SELECTOR );
+		helper.clickWhenClickable( this.driver, PENDING_STATUS_SELECTOR );
+
+		return helper.isEventuallyPresentAndDisplayed(
+			this.driver,
+			STATUS_PENDING_SELECTOR
+		);
+	}
+
+	_getStatusSelector( status ) {
+		switch ( status ) {
+			case 'Published': return STATUS_PUBLISHED_SELECTOR;
+			case 'Draft': return STATUS_DRAFT_SELECTOR;
+			case 'Pending Review': return STATUS_PENDING_SELECTOR;
+			case 'Scheduled': return STATUS_SCHEDULED_SELECTOR;
+		}
+	}
 	hasStatus( status ) {
-		const selector = By.xpath( `//span[@id="post-status-display" and contains(text(), "${ status }")]` );
-		return helper.isEventuallyPresentAndDisplayed( this.driver, selector );
+		return helper.isEventuallyPresentAndDisplayed(
+			this.driver,
+			this._getStatusSelector( status )
+		);
 	}
 
 	moveToTrash() {
