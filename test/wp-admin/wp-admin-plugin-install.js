@@ -76,21 +76,8 @@ test.describe( 'WPAdminPluginInstall', function() {
 		const pageArgs = { url: getPageUrl( config.get( 'url' ), PAGE.WP_ADMIN_PLUGINS ) };
 		const pagePlugins = new WPAdminPlugins( driver, pageArgs );
 
-		test.it( 'can deactivate new installed plugin "woocommerce"', () => {
-			return assert.eventually.equal(
-				pagePlugins.deactivate( 'woocommerce' ),
-				true
-			);
-		} );
-
-		test.after( () => {
-			test.it( 'can delete new installed plugin "woocommerce"', () => {
-				return assert.eventually.equal(
-					page.delete( 'woocommerce' ),
-					true
-				);
-			} );
-		} );
+		pagePlugins.deactivate( 'woocommerce' );
+		pagePlugins.delete( 'woocommerce' );
 
 		manager.quitBrowser();
 	} );
