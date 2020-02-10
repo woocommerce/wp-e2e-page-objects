@@ -3,8 +3,8 @@ node_js:
   - "10"
 addons:
   apt:
-		packages:
-			- google-chrome-stable
+    packages:
+      - google-chrome-stable
 script:
   - npm run lint
   - npm run test
