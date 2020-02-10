@@ -301,24 +301,7 @@ test.describe( 'WPAdmin', function() {
 		);
 	} );
 
-	test.it( 'log the user out when clicking "My Account > Log Out"', () => {
-		const wpAdmin = new WPAdmin( driver, { visit: false } );
-
-		wpAdmin.hoverMyAccountThenClickSubmenu( 'Log Out' ),
-		assert.eventually.equal(
-			wpAdmin.titleContains( 'Log In' ),
-			true,
-			'Could not get login page from clicking "My Account > Log Out"'
-		);
-	} );
-
 	test.it( 'may trigger admin notice after performing some actions', () => {
-		const wpLogin = new WPLogin( driver, { url: getPageUrl( config.get( 'url' ), PAGE.WP_LOGIN ) } );
-		wpLogin.login(
-			config.get( 'users.admin.username' ),
-			config.get( 'users.admin.password' )
-		);
-
 		const settings = new WPAdminSettingsGeneral( driver, { url: getPageUrl( config.get( 'url' ), PAGE.WP_ADMIN_SETTINGS_GENERAL ) } );
 		settings.checkMembership();
 		settings.saveChanges();
@@ -327,6 +310,17 @@ test.describe( 'WPAdmin', function() {
 			settings.hasNotice( 'Settings saved.' ),
 			true,
 			'Could not find notice which contains "Settings saved." in general settings page'
+		);
+	} );
+
+	test.it( 'log the user out when clicking "My Account > Log Out"', () => {
+		const wpAdmin = new WPAdmin( driver, { visit: false } );
+
+		wpAdmin.hoverMyAccountThenClickSubmenu( 'Log Out' ),
+		assert.eventually.equal(
+			wpAdmin.titleContains( 'Log In' ),
+			true,
+			'Could not get login page from clicking "My Account > Log Out"'
 		);
 	} );
 
