@@ -75,11 +75,9 @@ test.describe( 'WPAdminPluginInstall', function() {
 	test.after( () => {
 		const pageArgs = { url: getPageUrl( config.get( 'url' ), PAGE.WP_ADMIN_PLUGINS ) };
 		const pagePlugins = new WPAdminPlugins( driver, pageArgs );
-		pagePlugins.deactivate( 'woocommerce' );
 
-		driver.wait( () => {
-			return pagePlugins.delete( 'woocommerce' );
-		}, 10000, 'Time out waiting plugin deletion' );
+		pagePlugins.deactivate( 'woocommerce' );
+		pagePlugins.delete( 'woocommerce' );
 
 		manager.quitBrowser();
 	} );

@@ -9,11 +9,12 @@ import { WebDriverHelper as helper } from 'wp-e2e-webdriver';
  */
 import ComponentMetaBox from './component-meta-box';
 
+const CATEGORIES_PANEL = By.xpath( '//button[contains(text(), "Categories")]' );
 const METABOX_SELECTOR = By.css( '#categorydiv' );
-const ADD_NEW_SELECTOR = By.css( '#category-add-toggle' );
-const NEW_CATEGORY_FIELD_SELECTOR = By.css( '#newcategory' );
-const NEW_CATEGORY_PARENT_SELECTOR = By.css( '#newcategory_parent' );
-const NEW_CATEGORY_SUBMIT_SELECTOR = By.css( '#category-add-submit' );
+const ADD_NEW_SELECTOR = By.css( '.editor-post-taxonomies__hierarchical-terms-add' );
+const NEW_CATEGORY_FIELD_SELECTOR = By.css( '#editor-post-taxonomies__hierarchical-terms-input-0' );
+const NEW_CATEGORY_PARENT_SELECTOR = By.css( '#inspector-select-control-1' );
+const NEW_CATEGORY_SUBMIT_SELECTOR = By.css( '.editor-post-taxonomies__hierarchical-terms-submit' );
 
 export default class ComponentMetaBoxCategories extends ComponentMetaBox {
 	constructor( driver ) {
@@ -21,14 +22,22 @@ export default class ComponentMetaBoxCategories extends ComponentMetaBox {
 	}
 
 	addCategory( category, parent = '' ) {
+
+		// Open category panel
 		helper.clickWhenClickable(
+			this.driver,
+			CATEGORIES_PANEL
+		);
+
+		// Open new category panel after it loads
+		helper.waitTillPresentAndDisplayed(
 			this.driver,
 			ADD_NEW_SELECTOR
 		);
 
-		helper.waitTillPresentAndDisplayed(
+		helper.clickWhenClickable(
 			this.driver,
-			NEW_CATEGORY_FIELD_SELECTOR
+			ADD_NEW_SELECTOR
 		);
 
 		helper.setWhenSettable(
@@ -50,7 +59,7 @@ export default class ComponentMetaBoxCategories extends ComponentMetaBox {
 
 		return helper.isEventuallyPresentAndDisplayed(
 			this.driver,
-			By.xpath( `label[@class="selecit"] and contains(text(), "${ category }")` )
+			By.xpath( `label[@class="components-checkbox-control__label"] and contains(text(), "${ category }")` )
 		);
 	}
 }

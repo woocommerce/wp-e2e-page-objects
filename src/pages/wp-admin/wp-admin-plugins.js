@@ -11,7 +11,7 @@ import WPAdmin from './wp-admin';
 import WPAdminPluginInstall from './wp-admin-plugin-install';
 import ComponentPluginsList from '../../components/wp-admin/component-plugins-list';
 
-const ADD_NEW_SELECTOR = By.css( 'h1 .page-title-action' );
+const ADD_NEW_SELECTOR = By.css( 'h1 + .page-title-action' );
 
 const components = {
 	pluginsList: ComponentPluginsList,

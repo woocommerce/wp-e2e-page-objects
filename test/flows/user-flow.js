@@ -32,6 +32,10 @@ const testPosts = [
 		title: 'Test post ' + new Date().getTime() + ' #2',
 		status: 'Pending Review',
 	},
+	{
+		title: 'Test post ' + new Date().getTime() + ' #3',
+		status: 'Draft',
+	},
 ];
 
 let manager;
@@ -70,7 +74,12 @@ test.describe( 'UserFlow', function() {
 		testPosts.forEach( post => {
 			const postsList = user.open( PAGE.WP_ADMIN_POSTS );
 			postsList.search( post.title );
+
 			const editPost = postsList.editPostWithTitle( post.title );
+			assert.eventually.ok(
+				editPost.titleContains( 'Edit Post' ),
+				`Failed to assert edit post "${ post.title }`
+			);
 			assert.eventually.ok(
 				editPost.hasStatus( post.status ),
 				`Failed to assert post "${ post.title } has status ${ post.status }"`

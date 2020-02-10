@@ -193,7 +193,7 @@ test.describe( 'WPAdmin', function() {
 
 	test.it( 'has quick links in the admin bar', () => {
 		const wpAdmin = new WPAdmin( driver, { visit: false } );
-		[ 'About WordPress', config.get( 'siteTitle' ), 'awaiting moderation', 'New' ].forEach( ( menu ) => {
+		[ 'About WordPress', config.get( 'siteTitle' ), 'in moderation', 'New' ].forEach( ( menu ) => {
 			assert.eventually.equal( wpAdmin.hasQuickLink( menu ), true, `Could not find quick link "${ menu }"` );
 		} );
 	} );
@@ -203,7 +203,7 @@ test.describe( 'WPAdmin', function() {
 		const quickLinkMapsToTitle = [
 			[ 'About WordPress', 'About' ],
 			[ config.get( 'siteTitle' ), config.get( 'siteTitle' ) ],
-			[ 'awaiting moderation', 'Comments' ],
+			[ 'in moderation', 'Comments' ],
 			[ 'New', 'Add New Post' ],
 		];
 
@@ -223,7 +223,7 @@ test.describe( 'WPAdmin', function() {
 	test.it( 'has some quick links with submenus', () => {
 		const wpAdmin = new WPAdmin( driver, { visit: false } );
 		const quickLinks = [
-			[ 'About WordPress', [ 'About WordPress', 'WordPress.org', 'Documentation', 'Support Forums', 'Feedback' ] ],
+			[ 'About WordPress', [ 'About WordPress', 'WordPress.org', 'Documentation', 'Support', 'Feedback' ] ],
 			[ config.get( 'siteTitle' ), [ 'Visit Site' ] ],
 			[ 'New', [ 'Post', 'Media', 'Page', 'User' ] ],
 		];
@@ -301,24 +301,7 @@ test.describe( 'WPAdmin', function() {
 		);
 	} );
 
-	test.it( 'log the user out when clicking "My Account > Log Out"', () => {
-		const wpAdmin = new WPAdmin( driver, { visit: false } );
-
-		wpAdmin.hoverMyAccountThenClickSubmenu( 'Log Out' ),
-		assert.eventually.equal(
-			wpAdmin.titleContains( 'Log In' ),
-			true,
-			'Could not get login page from clicking "My Account > Log Out"'
-		);
-	} );
-
 	test.it( 'may trigger admin notice after performing some actions', () => {
-		const wpLogin = new WPLogin( driver, { url: getPageUrl( config.get( 'url' ), PAGE.WP_LOGIN ) } );
-		wpLogin.login(
-			config.get( 'users.admin.username' ),
-			config.get( 'users.admin.password' )
-		);
-
 		const settings = new WPAdminSettingsGeneral( driver, { url: getPageUrl( config.get( 'url' ), PAGE.WP_ADMIN_SETTINGS_GENERAL ) } );
 		settings.checkMembership();
 		settings.saveChanges();
@@ -327,6 +310,17 @@ test.describe( 'WPAdmin', function() {
 			settings.hasNotice( 'Settings saved.' ),
 			true,
 			'Could not find notice which contains "Settings saved." in general settings page'
+		);
+	} );
+
+	test.it( 'log the user out when clicking "My Account > Log Out"', () => {
+		const wpAdmin = new WPAdmin( driver, { visit: false } );
+
+		wpAdmin.hoverMyAccountThenClickSubmenu( 'Log Out' ),
+		assert.eventually.equal(
+			wpAdmin.titleContains( 'Log In' ),
+			true,
+			'Could not get login page from clicking "My Account > Log Out"'
 		);
 	} );
 
